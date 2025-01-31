@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="YQYStudio(一个为人民服务的公仆)">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2025/01/31/自制开源本地播放器本地播放器/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+    
+    
+        
+        <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自制开源本地播放器">
+<meta property="og:url" content="http://example.com/2025/01/31/%E8%87%AA%E5%88%B6%E5%BC%80%E6%BA%90%E6%9C%AC%E5%9C%B0%E6%92%AD%E6%94%BE%E5%99%A8%E6%9C%AC%E5%9C%B0%E6%92%AD%E6%94%BE%E5%99%A8/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/redefine-og.webp">
+<meta property="article:published_time" content="2025-01-31T15:29:39.000Z">
+<meta property="article:modified_time" content="2025-01-31T15:56:22.112Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/redefine-og.webp">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/moon.ico" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/moon.ico">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/moon.ico">
+    <!--- Page Info-->
+    
+    <title>
+        
+            自制开源本地播放器 | YQYStudio
+        
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/css/build/tailwind.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+    
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"example.com","root":"/","language":"en","path":"search.xml"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":true,"list":["初窥门径","略有小成","融会贯通","炉火纯青","登峰造极","返璞归真","万象归真·太虚造化"]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"pangu_js":false,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":true},"scroll_progress":{"bar":true,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"open_graph":{"enable":true,"image":"/images/redefine-og.webp","description":"Hexo Theme Redefine, Redefine Your Hexo Journey."},"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"static","image":{"light":"/images/background01.jpg","dark":"/images/background02.jpg"},"title":"朋友，欢迎你的到来","subtitle":{"text":["looding...."],"hitokoto":{"enable":true,"show_author":true,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"style":"default","links":{"github":"https://github.com/YQYStudio","instagram":null,"zhihu":null,"twitter":null,"email":"34756019@qq.com"},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"11.4.1"}},"version":"2.8.2","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"友情链接":{"icon":"fa-solid fa-link","path":"/links/"},"标签":{"icon":"fa-solid fa-tags","path":"/tags/"},"相册":{"icon":"fa-solid fa-image","path":"/masonry/"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":"资源仅做学习使用，请于24小时删除","show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2025/1/31 11:45:14"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":true};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+
+<body>
+	<div class="progress-bar-container">
+	
+	<span class="scroll-progress-bar"></span>
+	
+
+	
+	<span class="pjax-progress-bar"></span>
+	<!--        <span class="swup-progress-icon">-->
+	<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+	<!--        </span>-->
+	
+</div>
+
+<main class="page-container" id="swup">
+
+	
+
+	<div class="main-content-container flex flex-col justify-between min-h-dvh">
+		<div class="main-content-header">
+			<header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+                <a class="logo-image h-8 w-8 sm:w-10 sm:h-10 mr-3" href="/">
+                    <img src="/images/moon.svg" class="w-full h-full rounded-sm">
+                </a>
+            
+            <a class="logo-title" href="/">
+                
+                YQYStudio
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    HOME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/links/"
+                                        >
+                                    <i class="fa-solid fa-link fa-fw"></i>
+                                    友情链接
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/tags/"
+                                        >
+                                    <i class="fa-solid fa-tags fa-fw"></i>
+                                    标签
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/masonry/"
+                                        >
+                                    <i class="fa-solid fa-image fa-fw"></i>
+                                    相册
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                HOME
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/links/"
+                        >
+                            <span>
+                                友情链接
+                            </span>
+                            
+                                <i class="fa-solid fa-link fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/tags/"
+                        >
+                            <span>
+                                标签
+                            </span>
+                            
+                                <i class="fa-solid fa-tags fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/masonry/"
+                        >
+                            <span>
+                                相册
+                            </span>
+                            
+                                <i class="fa-solid fa-image fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+
+            
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">1</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">3</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+		</div>
+
+		<div class="main-content-body transition-fade-up">
+			
+
+			<div class="main-content">
+				<div class="post-page-container flex relative justify-between box-border w-full h-full">
+	<div class="article-content-container">
+
+		<div class="article-title relative w-full">
+			
+			<div class="w-full flex items-center pt-6 justify-start">
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">自制开源本地播放器</h1>
+			</div>
+			
+		</div>
+
+		
+		<div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+			<div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+				<img src="/images/weixintouxiang.jpg">
+			</div>
+			<div class="info flex flex-col justify-between">
+				<div class="author flex items-center">
+					<span class="name text-default-text-color text-lg font-semibold">YQYStudio(一个为人民服务的公仆)</span>
+					
+					<span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv1</span>
+					
+				</div>
+				<div class="meta-info">
+					<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2025-01-31 23:29:39</span>
+        <span class="mobile">2025-01-31 23:29:39</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2025-01-31 23:56:22</span>
+            <span class="mobile">2025-01-31 23:56:22</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>1.4k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>8 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+				</div>
+			</div>
+		</div>
+		
+
+		
+
+
+		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+			<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br><span class="line">380</span><br><span class="line">381</span><br><span class="line">382</span><br><span class="line">383</span><br><span class="line">384</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;zh-CN&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</span><br><span class="line">&lt;title&gt;无网环境下视屏播放解决方案（应付国产系统）&lt;/title&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">:root &#123;</span><br><span class="line">  --primary-color: #2196F3;</span><br><span class="line">  --secondary-color: #607D8B;</span><br><span class="line">  --background: #f5f5f5;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">body &#123;</span><br><span class="line">  background: var(--background);</span><br><span class="line">  font-family: &#x27;Segoe UI&#x27;, sans-serif;</span><br><span class="line">  margin: 0;</span><br><span class="line">  display: flex;</span><br><span class="line">  flex-direction: column;</span><br><span class="line">  min-height: 100vh;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.video-container &#123;</span><br><span class="line">  flex: 1;</span><br><span class="line">  width: 80%;</span><br><span class="line">  max-width: 960px;</span><br><span class="line">  margin: 20px auto;</span><br><span class="line">  background: #fff;</span><br><span class="line">  border-radius: 12px;</span><br><span class="line">  box-shadow: 0 4px 12px rgba(0,0,0,0.1);</span><br><span class="line">  overflow: hidden;</span><br><span class="line">  display: flex;</span><br><span class="line">  flex-direction: column;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">video &#123;</span><br><span class="line">  width: 100%;</span><br><span class="line">  flex: 1;</span><br><span class="line">  object-fit: contain;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.controls-wrapper &#123;</span><br><span class="line">  background: linear-gradient(to top, rgba(255,255,255,0.9) 60%, transparent);</span><br><span class="line">  padding: 20px 0 10px;</span><br><span class="line">  position: relative;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.controls &#123;</span><br><span class="line">  padding: 2px 10px 1px;</span><br><span class="line">  background: transparent;</span><br><span class="line">  display: flex;</span><br><span class="line">  gap: 12px;</span><br><span class="line">  align-items: center;</span><br><span class="line">  flex-wrap: wrap;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">button &#123;</span><br><span class="line">  padding: 8px 16px;</span><br><span class="line">  border: none;</span><br><span class="line">  border-radius: 6px;</span><br><span class="line">  background: var(--primary-color);</span><br><span class="line">  color: white;</span><br><span class="line">  cursor: pointer;</span><br><span class="line">  transition: all 0.2s ease;</span><br><span class="line">  display: flex;</span><br><span class="line">  align-items: center;</span><br><span class="line">  gap: 6px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">button:hover &#123;</span><br><span class="line">  background: #1976D2;</span><br><span class="line">  transform: translateY(-1px);</span><br><span class="line">  box-shadow: 0 2px 6px rgba(0,0,0,0.1);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.custom-file-input &#123;</span><br><span class="line">  position: relative;</span><br><span class="line">  overflow: hidden;</span><br><span class="line">  border-radius: 6px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.custom-file-input input[type=&quot;file&quot;] &#123;</span><br><span class="line">  opacity: 0;</span><br><span class="line">  position: absolute;</span><br><span class="line">  left: 0;</span><br><span class="line">  top: 0;</span><br><span class="line">  width: 100%;</span><br><span class="line">  height: 100%;</span><br><span class="line">  cursor: pointer;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.progress-container &#123;</span><br><span class="line">  height: 8px;</span><br><span class="line">  background: #E0E0E0;</span><br><span class="line">  border-radius: 4px;</span><br><span class="line">  cursor: pointer;</span><br><span class="line">  flex-grow: 1;</span><br><span class="line">  position: relative;</span><br><span class="line">  transition: height 0.2s ease;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.progress-container:hover &#123;</span><br><span class="line">  height: 12px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.progress-bar &#123;</span><br><span class="line">  height: 100%;</span><br><span class="line">  background: var(--primary-color);</span><br><span class="line">  width: 0%;</span><br><span class="line">  border-radius: 4px;</span><br><span class="line">  position: relative;</span><br><span class="line">  transition: width 0.2s ease;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.progress-bar::after &#123;</span><br><span class="line">  content: &#x27;&#x27;;</span><br><span class="line">  position: absolute;</span><br><span class="line">  right: -4px;</span><br><span class="line">  top: 50%;</span><br><span class="line">  transform: translateY(-50%);</span><br><span class="line">  width: 8px;</span><br><span class="line">  height: 8px;</span><br><span class="line">  background: white;</span><br><span class="line">  border-radius: 50%;</span><br><span class="line">  box-shadow: 0 2px 4px rgba(0,0,0,0.2);</span><br><span class="line">  opacity: 0;</span><br><span class="line">  transition: opacity 0.2s ease;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.progress-container:hover .progress-bar::after &#123;</span><br><span class="line">  opacity: 1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.time-display &#123;</span><br><span class="line">  color: var(--secondary-color);</span><br><span class="line">  font-size: 0.9em;</span><br><span class="line">  min-width: 100px;</span><br><span class="line">  text-align: center;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">select &#123;</span><br><span class="line">  padding: 6px 12px;</span><br><span class="line">  border: 1px solid #BDBDBD;</span><br><span class="line">  border-radius: 4px;</span><br><span class="line">  background: white;</span><br><span class="line">  color: var(--secondary-color);</span><br><span class="line">  cursor: pointer;</span><br><span class="line">  transition: all 0.2s ease;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">select:hover &#123;</span><br><span class="line">  border-color: var(--primary-color);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.loading-spinner &#123;</span><br><span class="line">  width: 24px;</span><br><span class="line">  height: 24px;</span><br><span class="line">  border: 3px solid rgba(0,0,0,0.1);</span><br><span class="line">  border-top-color: var(--primary-color);</span><br><span class="line">  border-radius: 50%;</span><br><span class="line">  animation: loading 0.6s linear infinite;</span><br><span class="line">  display: none;</span><br><span class="line">  position: absolute;</span><br><span class="line">  top: 50%;</span><br><span class="line">  left: 50%;</span><br><span class="line">  transform: translate(-50%, -50%);</span><br><span class="line">  z-index: 10;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@keyframes loading &#123;</span><br><span class="line">  from &#123; transform: rotate(0deg); &#125;</span><br><span class="line">  to &#123; transform: rotate(360deg); &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">:fullscreen .video-container &#123;</span><br><span class="line">  width: 100%;</span><br><span class="line">  max-width: none;</span><br><span class="line">  margin: 0;</span><br><span class="line">  border-radius: 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">:fullscreen .controls-wrapper &#123;</span><br><span class="line">  position: fixed;</span><br><span class="line">  bottom: 0;</span><br><span class="line">  left: 0;</span><br><span class="line">  right: 0;</span><br><span class="line">  padding: 10px 20px;</span><br><span class="line">  background: rgba(255,255,255,0.95);</span><br><span class="line">  transition: transform 0.3s ease;</span><br><span class="line">  transform: translateY(40px);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">:fullscreen .controls-wrapper:hover &#123;</span><br><span class="line">  transform: translateY(0);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">:fullscreen video &#123;</span><br><span class="line">  object-fit: contain;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;div class=&quot;video-container&quot;&gt;</span><br><span class="line">  &lt;video id=&quot;videoPlayer&quot; onclick=&quot;playPause()&quot;&gt;&lt;/video&gt;</span><br><span class="line">  &lt;div class=&quot;controls-wrapper&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;progress-container&quot; id=&quot;progressContainer&quot;&gt;</span><br><span class="line">      &lt;div class=&quot;progress-bar&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;controls&quot; style=&quot;margin-top: 5px;&quot;&gt;</span><br><span class="line">      &lt;label class=&quot;custom-file-input&quot;&gt;</span><br><span class="line">        &lt;input type=&quot;file&quot; id=&quot;videoFile&quot; accept=&quot;video/*&quot;&gt;</span><br><span class="line">        &lt;button&gt;📁 打开&lt;/button&gt;</span><br><span class="line">      &lt;/label&gt;</span><br><span class="line">      &lt;button onclick=&quot;playPause()&quot;&gt;▶️ 播放&lt;/button&gt;</span><br><span class="line">      &lt;button onclick=&quot;seek(5)&quot;&gt;⏩ 快进&lt;/button&gt;</span><br><span class="line">      &lt;button onclick=&quot;seek(-5)&quot;&gt;⏪ 后退&lt;/button&gt;</span><br><span class="line">      &lt;select id=&quot;speed&quot;&gt;</span><br><span class="line">        &lt;option value=&quot;0.5&quot;&gt;0.5x&lt;/option&gt;</span><br><span class="line">        &lt;option value=&quot;1&quot; selected&gt;1x&lt;/option&gt;</span><br><span class="line">        &lt;option value=&quot;1.5&quot;&gt;1.5x&lt;/option&gt;</span><br><span class="line">        &lt;option value=&quot;2&quot;&gt;2x&lt;/option&gt;</span><br><span class="line">      &lt;/select&gt;</span><br><span class="line">      &lt;button onclick=&quot;toggleFullScreen()&quot;&gt;🔲 全屏&lt;/button&gt;</span><br><span class="line">      &lt;span class=&quot;time-display&quot;&gt;</span><br><span class="line">        &lt;span id=&quot;currentTime&quot;&gt;00:00&lt;/span&gt; / </span><br><span class="line">        &lt;span id=&quot;duration&quot;&gt;00:00&lt;/span&gt;</span><br><span class="line">      &lt;/span&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">  &lt;div class=&quot;loading-spinner&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">const video = document.getElementById(&#x27;videoPlayer&#x27;);</span><br><span class="line">const progressBar = document.querySelector(&#x27;.progress-bar&#x27;);</span><br><span class="line">const currentTimeDisplay = document.getElementById(&#x27;currentTime&#x27;);</span><br><span class="line">const durationDisplay = document.getElementById(&#x27;duration&#x27;);</span><br><span class="line">const spinner = document.querySelector(&#x27;.loading-spinner&#x27;);</span><br><span class="line">const progressContainer = document.getElementById(&#x27;progressContainer&#x27;);</span><br><span class="line">const speedSelect = document.getElementById(&#x27;speed&#x27;);</span><br><span class="line"></span><br><span class="line">let isDragging = false;</span><br><span class="line"></span><br><span class="line">// 格式化时间</span><br><span class="line">function formatTime(seconds) &#123;</span><br><span class="line">  const minutes = Math.floor(seconds / 60);</span><br><span class="line">  const secs = Math.floor(seconds % 60);</span><br><span class="line">  return `$&#123;String(minutes).padStart(2, &#x27;0&#x27;)&#125;:$&#123;String(secs).padStart(2, &#x27;0&#x27;)&#125;`;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 更新时间和进度条</span><br><span class="line">function updateTimeDisplay() &#123;</span><br><span class="line">  currentTimeDisplay.textContent = formatTime(video.currentTime);</span><br><span class="line">  durationDisplay.textContent = formatTime(video.duration);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 文件选择处理</span><br><span class="line">document.getElementById(&#x27;videoFile&#x27;).addEventListener(&#x27;change&#x27;, function(e) &#123;</span><br><span class="line">  const file = e.target.files[0];</span><br><span class="line">  if (!file || !file.type.startsWith(&#x27;video/&#x27;)) &#123;</span><br><span class="line">    alert(&#x27;请选择有效的视频文件&#x27;);</span><br><span class="line">    return;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  spinner.style.display = &#x27;block&#x27;;</span><br><span class="line">  video.src = URL.createObjectURL(file);</span><br><span class="line"></span><br><span class="line">  video.addEventListener(&#x27;loadeddata&#x27;, () =&gt; &#123;</span><br><span class="line">    spinner.style.display = &#x27;none&#x27;;</span><br><span class="line">    updateTimeDisplay();</span><br><span class="line">    video.play().catch(() =&gt; &#123;&#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">// 播放/暂停切换</span><br><span class="line">function playPause() &#123;</span><br><span class="line">  video[video.paused ? &#x27;play&#x27; : &#x27;pause&#x27;]();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 更新按钮状态</span><br><span class="line">video.addEventListener(&#x27;play&#x27;, () =&gt; &#123;</span><br><span class="line">  document.querySelector(&#x27;button[onclick=&quot;playPause()&quot;]&#x27;).textContent = &#x27;⏸ 暂停&#x27;;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">video.addEventListener(&#x27;pause&#x27;, () =&gt; &#123;</span><br><span class="line">  document.querySelector(&#x27;button[onclick=&quot;playPause()&quot;]&#x27;).textContent = &#x27;▶️ 播放&#x27;;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">// 倍速选择功能（修复部分）</span><br><span class="line">speedSelect.addEventListener(&#x27;change&#x27;, () =&gt; &#123;</span><br><span class="line">  video.playbackRate = parseFloat(speedSelect.value);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">// 进度条交互</span><br><span class="line">progressContainer.addEventListener(&#x27;mousedown&#x27;, (e) =&gt; &#123;</span><br><span class="line">  isDragging = true;</span><br><span class="line">  handleProgress(e);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">document.addEventListener(&#x27;mousemove&#x27;, (e) =&gt; &#123;</span><br><span class="line">  if (isDragging) handleProgress(e);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">document.addEventListener(&#x27;mouseup&#x27;, () =&gt; &#123;</span><br><span class="line">  isDragging = false;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">function handleProgress(e) &#123;</span><br><span class="line">  if (!video.duration) return;</span><br><span class="line"></span><br><span class="line">  const container = document.fullscreenElement ? </span><br><span class="line">    document.fullscreenElement.querySelector(&#x27;.progress-container&#x27;) :</span><br><span class="line">    progressContainer;</span><br><span class="line"></span><br><span class="line">  const rect = container.getBoundingClientRect();</span><br><span class="line">  const percent = Math.min(Math.max((e.clientX - rect.left) / rect.width, 0), 1);</span><br><span class="line"></span><br><span class="line">  if (isDragging) &#123;</span><br><span class="line">    video.currentTime = percent * video.duration;</span><br><span class="line">  &#125;</span><br><span class="line">  progressBar.style.width = `$&#123;percent * 100&#125;%`;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 其他功能</span><br><span class="line">function seek(seconds) &#123; </span><br><span class="line">  video.currentTime += seconds; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function toggleFullScreen() &#123;</span><br><span class="line">  if (!document.fullscreenElement) &#123;</span><br><span class="line">    document.querySelector(&#x27;.video-container&#x27;).requestFullscreen();</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    document.exitFullscreen();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">video.addEventListener(&#x27;timeupdate&#x27;, () =&gt; &#123;</span><br><span class="line">  if (!isDragging) &#123;</span><br><span class="line">    progressBar.style.width = `$&#123;(video.currentTime / video.duration) * 100&#125;%`;</span><br><span class="line">  &#125;</span><br><span class="line">  updateTimeDisplay();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">document.addEventListener(&#x27;keydown&#x27;, (e) =&gt; &#123;</span><br><span class="line">  switch(e.key) &#123;</span><br><span class="line">    case &#x27; &#x27;: </span><br><span class="line">      e.preventDefault(); </span><br><span class="line">      playPause(); </span><br><span class="line">      break;</span><br><span class="line">    case &#x27;ArrowRight&#x27;: </span><br><span class="line">      seek(5); </span><br><span class="line">      break;</span><br><span class="line">    case &#x27;ArrowLeft&#x27;: </span><br><span class="line">      seek(-5); </span><br><span class="line">      break;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">// 全屏控制</span><br><span class="line">document.addEventListener(&#x27;fullscreenchange&#x27;, () =&gt; &#123;</span><br><span class="line">  const wrapper = document.querySelector(&#x27;.controls-wrapper&#x27;);</span><br><span class="line">  if (document.fullscreenElement) &#123;</span><br><span class="line">    wrapper.style.transform = &#x27;translateY(100px)&#x27;;</span><br><span class="line">    document.addEventListener(&#x27;mousemove&#x27;, handleFullscreenMouse);</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    wrapper.style.transform = &#x27;&#x27;;</span><br><span class="line">    document.removeEventListener(&#x27;mousemove&#x27;, handleFullscreenMouse);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">function handleFullscreenMouse(e) &#123;</span><br><span class="line">  const wrapper = document.querySelector(&#x27;.controls-wrapper&#x27;);</span><br><span class="line">  const rect = wrapper.getBoundingClientRect();</span><br><span class="line">  if (window.innerHeight - e.clientY &lt; 80) &#123;</span><br><span class="line">    wrapper.style.transform = &#x27;translateY(0)&#x27;;</span><br><span class="line">  &#125; else if (!isDragging) &#123;</span><br><span class="line">    wrapper.style.transform = &#x27;translateY(100px)&#x27;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></div>
+
+		</div>
+
+		
+		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+			<div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> 自制开源本地播放器</li>
+        <li><strong>Author:</strong> YQYStudio(一个为人民服务的公仆)</li>
+        <li><strong>Created at
+                :</strong> 2025-01-31 23:29:39</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2025-01-31 23:56:22
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://yqystudio-github-io.pages.dev/2025/01/31/自制开源本地播放器本地播放器/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
+
+		</div>
+		
+
+		
+
+		
+
+		
+		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+			
+			
+			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="next" rel="next" href="/2025/01/31/1-31%E5%85%AC%E8%80%83%E8%B5%84%E6%96%99%E5%88%86%E4%BA%AB/">
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item">1.31公考资料分享</span>
+						<span class="post-nav-item">Next posts</span>
+					</span>
+					<span class="right arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-right"></i>
+					</span>
+				</a>
+			</div>
+			
+		</div>
+		
+
+
+		
+		<div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+			<div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        Comments
+    </div>
+    
+
+        
+            
+    <div id="gitalk-container"></div>
+    <script data-swup-reload-script
+            src="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js"></script>
+    <script data-swup-reload-script>
+
+        function loadGitalk() {
+            let __gitalk__pathname = decodeURI(location.pathname);
+            const __gitalk__pathnameLength = __gitalk__pathname.length;
+            const __gitalk__pathnameMaxLength = 50;
+            if (__gitalk__pathnameLength > __gitalk__pathnameMaxLength) {
+                __gitalk__pathname = __gitalk__pathname.substring(0, __gitalk__pathnameMaxLength - 3) + '...';
+            }
+
+            try {
+                Gitalk && new Gitalk({
+                    clientID: 'Ov23liIQzoyz2Dzu8AI5',
+                    clientSecret: '66585f102ba3906da55064b29e5105ba8844c139',
+                    repo: 'Gitalk_comment_store',
+                    owner: 'YQYStudio',
+                    admin: ['YQYStudio'],
+                    id: __gitalk__pathname,
+                    language: 'en',
+                    proxy: 'https://github.com/login/oauth/access_token'
+                }).render('gitalk-container');
+
+            } catch (e) {
+                window.Gitalk = null;
+            }
+        }
+
+        if ('true') {
+            const loadGitalkTimeout = setTimeout(() => {
+                loadGitalk();
+                clearTimeout(loadGitalkTimeout);
+            }, 1000);
+        } else {
+            window.addEventListener('DOMContentLoaded', loadGitalk);
+        }
+    </script>
+
+
+
+        
+    
+</div>
+
+		</div>
+		
+	</div>
+
+	
+	<div class="toc-content-container">
+		<div class="post-toc-wrap">
+	<div class="post-toc">
+		<div class="toc-title">On this page</div>
+		<div class="page-title">自制开源本地播放器</div>
+		
+
+	</div>
+</div>
+	</div>
+	
+</div>
+			</div>
+
+			
+		</div>
+
+		<div class="main-content-footer">
+			<footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+            <div class="customize-info my-1">你说的对，但《原神》是由米哈游自主研发的一款全新开放世界冒险游戏,讲述了奥特曼与铠甲勇士在山海经世界斗智斗勇的故事。</div>
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2025</span>
+              -
+            
+            2025&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">YQYStudio(一个为人民服务的公仆)</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        3 posts in total
+                    </span>
+                    
+                        <span>
+                            1.6k words in total
+                        </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">VISITOR COUNT</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">TOTAL PAGE VIEWS</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.2</a></span>
+        </div>
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+		</div>
+	</div>
+
+	
+	<div class="post-tools">
+		<div class="post-tools-container">
+	<ul class="article-tools-list">
+		<!-- TOC aside toggle -->
+		
+		<li class="right-bottom-tools page-aside-toggle">
+			<i class="fa-regular fa-outdent"></i>
+		</li>
+		
+
+		<!-- go comment -->
+		
+		<li class="go-comment">
+			<i class="fa-regular fa-comments"></i>
+		</li>
+		
+	</ul>
+</div>
+	</div>
+	
+
+	<div class="right-side-tools-container">
+		<div class="side-tools-container">
+	<ul class="hidden-tools-list">
+		<li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-plus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-minus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+			<i class="fa-regular fa-moon"></i>
+		</li>
+
+		<!-- rss -->
+		
+
+		
+
+		<li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+			<i class="fa-regular fa-arrow-down"></i>
+		</li>
+	</ul>
+
+	<ul class="visible-tools-list">
+		<li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+			<i class="fa-regular fa-cog fa-spin"></i>
+		</li>
+		
+		<li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+			<i class="arrow-up fas fa-arrow-up"></i>
+			<span class="percent"></span>
+		</li>
+		
+		
+	</ul>
+</div>
+	</div>
+
+	<div class="image-viewer-container">
+	<img src="">
+</div>
+
+	
+	<div class="search-pop-overlay">
+	<div class="popup search-popup">
+		<div class="search-header">
+			<span class="search-input-field-pre">
+				<i class="fa-solid fa-keyboard"></i>
+			</span>
+			<div class="search-input-container">
+				<input autocomplete="off" autocorrect="off" autocapitalize="off" placeholder="Search..." spellcheck="false" type="search" class="search-input">
+			</div>
+			<span class="popup-btn-close">
+				<i class="fa-solid fa-times"></i>
+			</span>
+		</div>
+		<div id="search-result">
+			<div id="no-result">
+				<i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+			</div>
+		</div>
+	</div>
+</div>
+	
+
+</main>
+
+
+
+<script src="/js/build/libs/Swup.min.js"></script>
+
+<script src="/js/build/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/build/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+	
+<script src="/js/build/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/build/utils.js" type="module"></script>
+
+<script src="/js/build/main.js" type="module"></script>
+
+<script src="/js/build/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/build/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/build/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/build/layouts/categoryList.js" type="module"></script>
+
+
+
+    
+<script src="/js/build/tools/localSearch.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/tools/runtime.js"></script>
+
+    
+<script src="/js/build/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/build/libs/Typed.min.js"></script>
+
+  
+<script src="/js/build/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+    
+<script src="/js/build/libs/minimasonry.min.js"></script>
+
+    
+<script src="/js/build/plugins/masonry.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/libs/anime.min.js"></script>
+
+
+
+
+
+    
+<script src="/js/build/tools/tocToggle.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/layouts/toc.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/plugins/tabs.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+<script src="/js/build/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
+
+
+<script src="/js/build/layouts/essays.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+
+	
+</body>
+
+</html>
