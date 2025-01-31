@@ -1,0 +1,11 @@
+- links_category: 技术参考
+  has_thumbnail: true
+  list:
+      - name: Hexo
+        link: https://hexo.io/zh-cn/
+        description: 优秀前端博客框架
+        avatar: https://hexo.io/logo.svg
+        thumbnail: https://hexo.io/logo.svg # has_thumbnail 为 true 时才需要
+ 
+
+ 
