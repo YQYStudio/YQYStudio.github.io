@@ -211,6 +211,9 @@ navbar:
     相册: #取名随意
       icon: fa-solid fa-image #图标
       path: /masonry/ 
+    类别: #取名随意
+      icon: fa-solid fa-folder #图标
+      path: /categories/ #链接
     # Archives: 
     #   path: /archives 
     #   icon: fa-regular fa-archive # can be empty
@@ -335,7 +338,7 @@ articles:
   # Article recommendation. Requires nodejieba (npm install nodejieba). Transplanted from hexo-theme-volantis.
   recommendation:
     # Whether to enable article recommendation
-    enable: false
+    enable: true
     # Article recommendation title
     title: 推荐阅读
     # Max number of articles to display
@@ -355,7 +358,7 @@ comment:
   # Whether to enable comment
   enable: true
   # Comment system
-  system: gitalk # waline, gitalk, twikoo, giscus
+  system: giscus # waline, gitalk, twikoo, giscus
   # System configuration
   config:
     # Waline comment system. See https://waline.js.org/
@@ -380,11 +383,11 @@ comment:
       region: # Twikoo region. can be empty
     # Giscus comment system. See https://giscus.app/
     giscus:
-      repo: # Github repository name e.g. EvanNotFound/hexo-theme-redefine
-      repo_id: # Github repository id
-      category: # Github discussion category
-      category_id: # Github discussion category id
-      mapping: pathname # Which value to use as the unique identifier for the page. e.g. pathname, url, title, og:title. DO NOT USE og:title WITH PJAX ENABLED since pjax will not update og:title when the page changes
+      repo: YQYStudio/Gitalk_comment_store # Github repository name e.g. EvanNotFound/hexo-theme-redefine
+      repo_id: R_kgDONyPiwg # Github repository id
+      category: General # Github discussion category
+      category_id: DIC_kwDONyPiws4CmgE6 # Github discussion category id
+      mapping: title # Which value to use as the unique identifier for the page. e.g. pathname, url, title, og:title. DO NOT USE og:title WITH PJAX ENABLED since pjax will not update og:title when the page changes
       strict: 0 # Whether to enable strict mode. e.g. 0, 1
       reactions_enabled: 1 # Whether to enable reactions. e.g. 0, 1
       emit_metadata: 0 # Whether to emit metadata. e.g. 0, 1
@@ -407,7 +410,7 @@ footer:
   statistics: true # show site statistics or not (total articles, total words)
   # Footer message
   customize:
-    '你说的对，但《原神》是由米哈游自主研发的一款全新开放世界冒险游戏,讲述了奥特曼与铠甲勇士在山海经世界斗智斗勇的故事。'
+    '每一次遇见，都是千载难逢的幸运，每一次交流，都是前世今生的缘分，愿您，平安喜乐，事事皆顺...'
   # ICP record number. See https://beian.miit.gov.cn/
   icp:
     enable: false # Whether to enable
