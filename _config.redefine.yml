@@ -251,7 +251,7 @@ home:
     enable: true # Whether to enable sidebar
     position: left # Sidebar position. left, right
     first_item: menu # First item in sidebar. menu, info
-    announcement: 资源仅做学习使用，请于24小时删除 # Announcement text
+    announcement: 资源仅做学习使用，请于24小时内删除。如有侵权，请联系我删除 # Announcement text
     show_on_mobile: true # Whether to show sidebar navigation on mobile sheet menu
     links:
       # Archives: 
