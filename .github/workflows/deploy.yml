@@ -42,7 +42,7 @@ jobs:
 
       - name: Clean and Generate static pages
         run: |
-          hexo clean  # 先清理旧文件
+          #hexoclean先清理旧文件
           hexo generate
         working-directory: ./blog
 
