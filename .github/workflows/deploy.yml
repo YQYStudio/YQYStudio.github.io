@@ -63,3 +63,4 @@ jobs:
           external_repository: YQYStudio/YQYStudio.github.io
           publish_branch: main
           commit_message: 'Automated deploy: ${{ github.sha }}'
+          force_orphan: true
