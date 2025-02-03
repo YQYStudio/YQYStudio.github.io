@@ -1,0 +1,47 @@
+name: Deploy Hexo to GitHub Pages
+
+on:
+  push:
+    branches:
+      - hexo
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout blog source
+        uses: actions/checkout@v4  # 升级到最新版
+        with:
+          path: blog
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4  # 升级到 v4
+        with:
+          node-version: "20"  # 推荐 Node.js 20
+          cache: 'npm'  # 自动缓存 npm
+
+      - name: Install dependencies (Linux rebuild)
+        run: |
+          npm install --target_platform=linux --target_arch=x64 --force
+          npm rebuild nodejieba --update-binary  # 强制重编译
+        working-directory: ./blog
+
+      - name: Install Hexo CLI
+        run: npm install -g hexo-cli
+        working-directory: ./blog
+
+      - name: Clean and Generate static pages
+        run: |
+          hexo clean  # 先清理旧文件
+          hexo generate
+        working-directory: ./blog
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          deploy_key: ${{ secrets.DEPLOY_KEY }}  # 改用 SSH 密钥
+          publish_dir: ./blog/public
+          external_repository: YQYStudio/YQYStudio.github.io
+          publish_branch: main
+          commit_message: 'Automated deploy: ${{ github.sha }}'
