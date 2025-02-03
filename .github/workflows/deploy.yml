@@ -22,6 +22,14 @@ jobs:
           cache: 'npm'  # 自动缓存 npm
           cache-dependency-path: blog/package-lock.json  # 指定锁定文件路径
 
+      - name: Install node-pre-gyp globally
+        run: npm install -g node-pre-gyp
+        working-directory: ./blog
+
+      - name: Set correct permissions for node_modules
+        run: chmod -R 755 ./node_modules
+        working-directory: ./blog
+
       - name: Install dependencies (Linux rebuild)
         run: |
           npm install --target_platform=linux --target_arch=x64 --force
