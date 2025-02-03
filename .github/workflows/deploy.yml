@@ -11,16 +11,16 @@ jobs:
 
     steps:
       - name: Checkout blog source
-        uses: actions/checkout@v4  # 升级到最新版
+        uses: actions/checkout@v4
         with:
           path: blog
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4  # 升级到 v4
+        uses: actions/setup-node@v4
         with:
-          node-version: "20"  # 推荐 Node.js 20
-          cache: 'npm'  # 自动缓存 npm
-          cache-dependency-path: blog/package-lock.json  # 指定锁定文件路径
+          node-version: "20"
+          cache: 'npm'
+          cache-dependency-path: blog/package-lock.json
 
       - name: Install node-pre-gyp globally
         run: npm install -g node-pre-gyp
@@ -33,7 +33,7 @@ jobs:
       - name: Install dependencies (Linux rebuild)
         run: |
           npm install --target_platform=linux --target_arch=x64 --force
-          npm rebuild nodejieba --update-binary  # 强制重编译
+          npm rebuild nodejieba --update-binary
         working-directory: ./blog
 
       - name: Install Hexo CLI
@@ -42,8 +42,17 @@ jobs:
 
       - name: Clean and Generate static pages
         run: |
-          #hexoclean先清理旧文件
+          #hexoclean
           hexo generate
+        working-directory: ./blog
+
+      - name: Fetch and merge remote changes
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git remote add target https://github.com/YQYStudio/YQYStudio.github.io.git
+          git fetch target main
+          git merge target/main
         working-directory: ./blog
 
       - name: Deploy to GitHub Pages
