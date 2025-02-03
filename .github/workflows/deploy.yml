@@ -46,15 +46,6 @@ jobs:
           hexo generate
         working-directory: ./blog
 
-      - name: Fetch and merge remote changes
-        run: |
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "actions@github.com"
-          git remote add target https://github.com/YQYStudio/YQYStudio.github.io.git
-          git fetch target main
-          git merge target/main
-        working-directory: ./blog
-
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
