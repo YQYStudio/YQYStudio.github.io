@@ -20,6 +20,7 @@ jobs:
         with:
           node-version: "20"  # 推荐 Node.js 20
           cache: 'npm'  # 自动缓存 npm
+          cache-dependency-path: blog/package-lock.json  # 指定锁定文件路径
 
       - name: Install dependencies (Linux rebuild)
         run: |
