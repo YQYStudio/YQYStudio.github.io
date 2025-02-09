@@ -39,7 +39,7 @@ import {initHBE} from "/js/plugins/hbe.js";
     <div class="hbe hbe-input hbe-input-default">
       <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
       <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-default">这里需要密码才能查看。</span>
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">密码：4814</span>
       </label>
     </div>
   </div>
