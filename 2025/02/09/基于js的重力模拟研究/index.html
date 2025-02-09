@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="YQYStudio(一个为人民服务的公仆)">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2025/02/09/基于js的重力模拟研究/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+    
+    
+        
+        <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于js的重力模拟研究">
+<meta property="og:url" content="http://example.com/2025/02/09/%E5%9F%BA%E4%BA%8Ejs%E7%9A%84%E9%87%8D%E5%8A%9B%E6%A8%A1%E6%8B%9F%E7%A0%94%E7%A9%B6/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/redefine-og.webp">
+<meta property="article:published_time" content="2025-02-09T14:48:23.000Z">
+<meta property="article:modified_time" content="2025-02-09T15:11:11.346Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="技术">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/redefine-og.webp">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/moon.ico" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/moon.ico">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/moon.ico">
+    <!--- Page Info-->
+    
+    <title>
+        
+            基于js的重力模拟研究 | YQYStudio
+        
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/css/build/tailwind.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+    
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.xml"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":["初窥门径","略有小成","融会贯通","炉火纯青"," 登峰造极","返璞归真","万象归真"]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"pangu_js":false,"recommendation":{"enable":true,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":true},"scroll_progress":{"bar":true,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"open_graph":{"enable":true,"image":"/images/redefine-og.webp","description":"Hexo Theme Redefine, Redefine Your Hexo Journey."},"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/background01.jpg","dark":"/images/background02.jpg"},"title":"朋友，欢迎你的到来","subtitle":{"text":["looding...."],"hitokoto":{"enable":true,"show_author":true,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"style":"default","links":{"github":"https://github.com/YQYStudio","instagram":null,"zhihu":null,"twitter":null,"email":"34756019@qq.com"},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":true,"type":"fixed","audios":[{"name":"猜你喜欢","artist":"随机","url":"https://api.cenguigui.cn/api/netease?&type=mp3","cover":"https://api.cenguigui.cn/api/netease?&type=img","lrc":null}]},"mermaid":{"enable":true,"version":"11.4.1"}},"version":"2.8.2","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"随笔":{"icon":"fa-solid fa-pen-nib","path":"/essays/"},"友情链接":{"icon":"fa-solid fa-link","path":"/links/"},"标签":{"icon":"fa-solid fa-tags","path":"/tags/"},"相册":{"icon":"fa-solid fa-image","path":"/masonry/"},"类别":{"icon":"fa-solid fa-folder","path":"/categories/"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":"资源仅做学习使用，请于24小时内删除。如有侵权，请联系我删除（本站评论功能需要有GIthub账号）","show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2025/1/31 11:45:14"};
+    window.lang_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+    window.data = {"masonry":true};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+
+<body>
+	<div class="progress-bar-container">
+	
+	<span class="scroll-progress-bar"></span>
+	
+
+	
+	<span class="pjax-progress-bar"></span>
+	<!--        <span class="swup-progress-icon">-->
+	<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+	<!--        </span>-->
+	
+</div>
+
+<main class="page-container" id="swup">
+
+	
+
+	<div class="main-content-container flex flex-col justify-between min-h-dvh">
+		<div class="main-content-header">
+			<header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+                <a class="logo-image h-8 w-8 sm:w-10 sm:h-10 mr-3" href="/">
+                    <img src="/images/moon.svg" class="w-full h-full rounded-sm">
+                </a>
+            
+            <a class="logo-title" href="/">
+                
+                YQYStudio
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    首页
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/essays/"
+                                        >
+                                    <i class="fa-solid fa-pen-nib fa-fw"></i>
+                                    随笔
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/links/"
+                                        >
+                                    <i class="fa-solid fa-link fa-fw"></i>
+                                    友情链接
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/tags/"
+                                        >
+                                    <i class="fa-solid fa-tags fa-fw"></i>
+                                    标签
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/masonry/"
+                                        >
+                                    <i class="fa-solid fa-image fa-fw"></i>
+                                    相册
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/categories/"
+                                        >
+                                    <i class="fa-solid fa-folder fa-fw"></i>
+                                    类别
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                首页
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/essays/"
+                        >
+                            <span>
+                                随笔
+                            </span>
+                            
+                                <i class="fa-solid fa-pen-nib fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/links/"
+                        >
+                            <span>
+                                友情链接
+                            </span>
+                            
+                                <i class="fa-solid fa-link fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/tags/"
+                        >
+                            <span>
+                                标签
+                            </span>
+                            
+                                <i class="fa-solid fa-tags fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/masonry/"
+                        >
+                            <span>
+                                相册
+                            </span>
+                            
+                                <i class="fa-solid fa-image fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/categories/"
+                        >
+                            <span>
+                                类别
+                            </span>
+                            
+                                <i class="fa-solid fa-folder fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+
+            
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">9</div>
+        <div class="label text-third-text-color text-sm">标签</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">5</div>
+        <div class="label text-third-text-color text-sm">分类</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">11</div>
+        <div class="label text-third-text-color text-sm">文章</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+		</div>
+
+		<div class="main-content-body transition-fade-up">
+			
+
+			<div class="main-content">
+				<div class="post-page-container flex relative justify-between box-border w-full h-full">
+	<div class="article-content-container">
+
+		<div class="article-title relative w-full">
+			
+			
+			
+			<img src="https://haowallpaper.com/link/common/file/previewFileImg/16336953009622400" alt="基于js的重力模拟研究" class="w-full h-60 sm:h-72 md:h-80 object-cover sm:rounded-t-large dark:brightness-75" />
+			
+			<div class="w-full flex items-center absolute bottom-0 justify-start">
+				<h1 class="article-title-cover text-center mx-6 my-6 text-second-text-color bg-background-color-transparent px-4 py-3 text-3xl sm:text-4xl md:text-5xl font-semibold backdrop-blur-lg rounded-xl border border-border-color ">基于js的重力模拟研究</h1>
+			</div>
+			
+		</div>
+
+		
+		<div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+			<div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+				<img src="/images/weixintouxiang.jpg">
+			</div>
+			<div class="info flex flex-col justify-between">
+				<div class="author flex items-center">
+					<span class="name text-default-text-color text-lg font-semibold">YQYStudio(一个为人民服务的公仆)</span>
+					
+					<span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">略有小成</span>
+					
+				</div>
+				<div class="meta-info">
+					<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2025-02-09 22:48:23</span>
+        <span class="mobile">2025-02-09 22:48:23</span>
+        <span class="hover-info">创建</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2025-02-09 23:11:11</span>
+            <span class="mobile">2025-02-09 23:11:11</span>
+            <span class="hover-info">更新</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/%E6%8A%80%E6%9C%AF%E5%BD%92%E6%A1%A3/">技术归档</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E6%8A%80%E6%9C%AF/">技术</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>2.2k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>13 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+				</div>
+			</div>
+		</div>
+		
+
+		
+
+
+		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+			<h4 id="第一部分为在线调试代码，第二部分为重力算法代码块。"><a href="#第一部分为在线调试代码，第二部分为重力算法代码块。" class="headerlink" title="第一部分为在线调试代码，第二部分为重力算法代码块。"></a>第一部分为在线调试代码，第二部分为重力算法代码块。</h4><details class="pink" data-header-exclude><summary><i class="fa-solid fa-chevron-right"></i>代码调试器 </summary>
+              <div class='content'>
+              <div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</span><br><span class="line">    &lt;title&gt;在线 HTML 代码运行程序&lt;/title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        body &#123;</span><br><span class="line">            display: flex;</span><br><span class="line">            margin: 0;</span><br><span class="line">            height: 100vh;</span><br><span class="line">            font-family: &#x27;Segoe UI&#x27;, Tahoma, Geneva, Verdana, sans-serif;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        /* 左边输入区域 */</span><br><span class="line">        #input-area &#123;</span><br><span class="line">            flex: 9;</span><br><span class="line">            padding: 20px;</span><br><span class="line">            background-color: #f4f4f9;</span><br><span class="line">            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1) inset;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        #code-input &#123;</span><br><span class="line">            width: 100%;</span><br><span class="line">            height: 100%;</span><br><span class="line">            resize: none;</span><br><span class="line">            font-family: monospace;</span><br><span class="line">            border: 1px solid #ccc;</span><br><span class="line">            border-radius: 4px;</span><br><span class="line">            padding: 10px;</span><br><span class="line">            box-sizing: border-box;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        /* 右边功能区 */</span><br><span class="line">        #function-area &#123;</span><br><span class="line">            flex: 2;</span><br><span class="line">            padding: 20px;</span><br><span class="line">            background-color: #e8e8f3;</span><br><span class="line">            display: flex;</span><br><span class="line">            flex-direction: column;</span><br><span class="line">            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        button &#123;</span><br><span class="line">            margin-bottom: 10px;</span><br><span class="line">            padding: 10px;</span><br><span class="line">            border: none;</span><br><span class="line">            border-radius: 4px;</span><br><span class="line">            background-color: #007BFF;</span><br><span class="line">            color: white;</span><br><span class="line">            cursor: pointer;</span><br><span class="line">            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);</span><br><span class="line">            transition: background-color 0.3s ease;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        button:hover &#123;</span><br><span class="line">            background-color: #0056b3;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        /* 模态框样式 */</span><br><span class="line">        .modal &#123;</span><br><span class="line">            display: none;</span><br><span class="line">            position: fixed;</span><br><span class="line">            top: 0;</span><br><span class="line">            left: 0;</span><br><span class="line">            width: 100%;</span><br><span class="line">            height: 100%;</span><br><span class="line">            background-color: rgba(0, 0, 0, 0.5);</span><br><span class="line">            justify-content: center;</span><br><span class="line">            align-items: center;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        .modal-content &#123;</span><br><span class="line">            background-color: white;</span><br><span class="line">            border-radius: 4px;</span><br><span class="line">            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);</span><br><span class="line">            position: relative;</span><br><span class="line">            min-width: 300px;</span><br><span class="line">            min-height: 200px;</span><br><span class="line">            width: 80%;</span><br><span class="line">            height: 80%;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        .modal-header &#123;</span><br><span class="line">            padding: 10px;</span><br><span class="line">            background-color: #f0f0f0;</span><br><span class="line">            cursor: move;</span><br><span class="line">            display: flex;</span><br><span class="line">            justify-content: space-between;</span><br><span class="line">            align-items: center;</span><br><span class="line">            border-bottom: 1px solid #ccc;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        .close &#123;</span><br><span class="line">            font-size: 28px;</span><br><span class="line">            font-weight: bold;</span><br><span class="line">            cursor: pointer;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        .close:hover &#123;</span><br><span class="line">            color: red;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        .modal-body &#123;</span><br><span class="line">            padding: 10px;</span><br><span class="line">            height: calc(100% - 41px);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        .modal-body iframe &#123;</span><br><span class="line">            width: 100%;</span><br><span class="line">            height: 100%;</span><br><span class="line">            border: none;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        /* 调整大小的边框样式 */</span><br><span class="line">        .resizer &#123;</span><br><span class="line">            position: absolute;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        .resizer.right &#123;</span><br><span class="line">            right: 0;</span><br><span class="line">            top: 0;</span><br><span class="line">            height: 100%;</span><br><span class="line">            width: 5px;</span><br><span class="line">            cursor: ew-resize;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        .resizer.bottom &#123;</span><br><span class="line">            bottom: 0;</span><br><span class="line">            left: 0;</span><br><span class="line">            width: 100%;</span><br><span class="line">            height: 5px;</span><br><span class="line">            cursor: ns-resize;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        .resizer.bottom-right &#123;</span><br><span class="line">            right: 0;</span><br><span class="line">            bottom: 0;</span><br><span class="line">            width: 10px;</span><br><span class="line">            height: 10px;</span><br><span class="line">            cursor: nwse-resize;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;!-- 左边输入区域 --&gt;</span><br><span class="line">    &lt;div id=&quot;input-area&quot;&gt;</span><br><span class="line">        &lt;textarea id=&quot;code-input&quot; placeholder=&quot;请输入 HTML 代码&quot;&gt;&lt;/textarea&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;!-- 右边功能区 --&gt;</span><br><span class="line">    &lt;div id=&quot;function-area&quot;&gt;</span><br><span class="line">        &lt;button id=&quot;run-code&quot;&gt;运行代码&lt;/button&gt;</span><br><span class="line">        &lt;button id=&quot;copy-code&quot;&gt;复制代码&lt;/button&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;!-- 模态框 --&gt;</span><br><span class="line">    &lt;div id=&quot;modal&quot; class=&quot;modal&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;modal-content&quot;&gt;</span><br><span class="line">            &lt;div class=&quot;modal-header&quot;&gt;</span><br><span class="line">                &lt;span&gt;运行结果&lt;/span&gt;</span><br><span class="line">                &lt;span class=&quot;close&quot;&gt;&amp;times;&lt;/span&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">            &lt;div class=&quot;modal-body&quot;&gt;</span><br><span class="line">                &lt;iframe id=&quot;result&quot;&gt;&lt;/iframe&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">            &lt;div class=&quot;resizer right&quot;&gt;&lt;/div&gt;</span><br><span class="line">            &lt;div class=&quot;resizer bottom&quot;&gt;&lt;/div&gt;</span><br><span class="line">            &lt;div class=&quot;resizer bottom-right&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">    &lt;script&gt;</span><br><span class="line">        const codeInput = document.getElementById(&#x27;code-input&#x27;);</span><br><span class="line">        const runCodeButton = document.getElementById(&#x27;run-code&#x27;);</span><br><span class="line">        const copyCodeButton = document.getElementById(&#x27;copy-code&#x27;);</span><br><span class="line">        const resultFrame = document.getElementById(&#x27;result&#x27;);</span><br><span class="line">        const modal = document.getElementById(&#x27;modal&#x27;);</span><br><span class="line">        const closeBtn = document.querySelector(&#x27;.close&#x27;);</span><br><span class="line"></span><br><span class="line">        // 运行代码功能</span><br><span class="line">        runCodeButton.addEventListener(&#x27;click&#x27;, () =&gt; &#123;</span><br><span class="line">            const code = codeInput.value;</span><br><span class="line">            modal.style.display = &#x27;flex&#x27;;</span><br><span class="line">            const doc = resultFrame.contentDocument || resultFrame.contentWindow.document;</span><br><span class="line">            doc.open();</span><br><span class="line">            doc.write(code);</span><br><span class="line">            doc.close();</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        // 复制代码功能</span><br><span class="line">        copyCodeButton.addEventListener(&#x27;click&#x27;, () =&gt; &#123;</span><br><span class="line">            codeInput.select();</span><br><span class="line">            document.execCommand(&#x27;copy&#x27;);</span><br><span class="line">            alert(&#x27;代码已复制到剪贴板&#x27;);</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        // 关闭模态框</span><br><span class="line">        closeBtn.addEventListener(&#x27;click&#x27;, () =&gt; &#123;</span><br><span class="line">            modal.style.display = &#x27;none&#x27;;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        // 点击模态框外部关闭模态框</span><br><span class="line">        window.addEventListener(&#x27;click&#x27;, (event) =&gt; &#123;</span><br><span class="line">            if (event.target === modal) &#123;</span><br><span class="line">                modal.style.display = &#x27;none&#x27;;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        // 模态框拖动功能</span><br><span class="line">        const modalHeader = document.querySelector(&#x27;.modal-header&#x27;);</span><br><span class="line">        let isDragging = false;</span><br><span class="line">        let offsetX, offsetY;</span><br><span class="line"></span><br><span class="line">        modalHeader.addEventListener(&#x27;mousedown&#x27;, (e) =&gt; &#123;</span><br><span class="line">            isDragging = true;</span><br><span class="line">            const content = modal.querySelector(&#x27;.modal-content&#x27;);</span><br><span class="line">            offsetX = e.clientX - content.getBoundingClientRect().left;</span><br><span class="line">            offsetY = e.clientY - content.getBoundingClientRect().top;</span><br><span class="line">            e.preventDefault();</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        document.addEventListener(&#x27;mousemove&#x27;, (e) =&gt; &#123;</span><br><span class="line">            if (isDragging) &#123;</span><br><span class="line">                const content = modal.querySelector(&#x27;.modal-content&#x27;);</span><br><span class="line">                content.style.left = (e.clientX - offsetX) + &#x27;px&#x27;;</span><br><span class="line">                content.style.top = (e.clientY - offsetY) + &#x27;px&#x27;;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        document.addEventListener(&#x27;mouseup&#x27;, () =&gt; &#123;</span><br><span class="line">            isDragging = false;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        // 模态框调整大小功能</span><br><span class="line">        const resizers = document.querySelectorAll(&#x27;.resizer&#x27;);</span><br><span class="line">        let currentResizer;</span><br><span class="line"></span><br><span class="line">        resizers.forEach((resizer) =&gt; &#123;</span><br><span class="line">            resizer.addEventListener(&#x27;mousedown&#x27;, (e) =&gt; &#123;</span><br><span class="line">                currentResizer = resizer;</span><br><span class="line">                isDragging = true;</span><br><span class="line">                offsetX = e.clientX;</span><br><span class="line">                offsetY = e.clientY;</span><br><span class="line">                e.preventDefault();</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        document.addEventListener(&#x27;mousemove&#x27;, (e) =&gt; &#123;</span><br><span class="line">            if (isDragging &amp;&amp; currentResizer) &#123;</span><br><span class="line">                const content = modal.querySelector(&#x27;.modal-content&#x27;);</span><br><span class="line">                const rect = content.getBoundingClientRect();</span><br><span class="line"></span><br><span class="line">                if (currentResizer.classList.contains(&#x27;right&#x27;)) &#123;</span><br><span class="line">                    content.style.width = Math.max(300, rect.width + (e.clientX - offsetX)) + &#x27;px&#x27;;</span><br><span class="line">                    offsetX = e.clientX;</span><br><span class="line">                &#125; else if (currentResizer.classList.contains(&#x27;bottom&#x27;)) &#123;</span><br><span class="line">                    content.style.height = Math.max(200, rect.height + (e.clientY - offsetY)) + &#x27;px&#x27;;</span><br><span class="line">                    offsetY = e.clientY;</span><br><span class="line">                &#125; else if (currentResizer.classList.contains(&#x27;bottom-right&#x27;)) &#123;</span><br><span class="line">                    content.style.width = Math.max(300, rect.width + (e.clientX - offsetX)) + &#x27;px&#x27;;</span><br><span class="line">                    content.style.height = Math.max(200, rect.height + (e.clientY - offsetY)) + &#x27;px&#x27;;</span><br><span class="line">                    offsetX = e.clientX;</span><br><span class="line">                    offsetY = e.clientY;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        document.addEventListener(&#x27;mouseup&#x27;, () =&gt; &#123;</span><br><span class="line">            isDragging = false;</span><br><span class="line">            currentResizer = null;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        // 阻止模态框内点击触发关闭事件</span><br><span class="line">        const modalContent = document.querySelector(&#x27;.modal-content&#x27;);</span><br><span class="line">        modalContent.addEventListener(&#x27;click&#x27;, (e) =&gt; &#123;</span><br><span class="line">            e.stopPropagation();</span><br><span class="line">        &#125;);</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></div>
+              </div>
+            </details>
+
+
+
+<details class="pink" data-header-exclude><summary><i class="fa-solid fa-chevron-right"></i>重力模拟代码 </summary>
+              <div class='content'>
+              <div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</span><br><span class="line">    &lt;title&gt;小球重力动画（优化版）&lt;/title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        body &#123;</span><br><span class="line">            display: flex;</span><br><span class="line">            margin: 0;</span><br><span class="line">            height: 100vh;</span><br><span class="line">            background-color: #121212;</span><br><span class="line">            color: white;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        #animation-container &#123;</span><br><span class="line">            flex: 9;</span><br><span class="line">            background-color: #1e1e1e;</span><br><span class="line">            position: relative;</span><br><span class="line">            overflow: hidden;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        #control-panel &#123;</span><br><span class="line">            flex: 2;</span><br><span class="line">            background-color: #262626;</span><br><span class="line">            padding: 20px;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        .ball &#123;</span><br><span class="line">            position: absolute;</span><br><span class="line">            border-radius: 50%;</span><br><span class="line">            left: 0;</span><br><span class="line">            top: 0;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        .wind-effect &#123;</span><br><span class="line">            position: absolute;</span><br><span class="line">            top: 0;</span><br><span class="line">            left: 0;</span><br><span class="line">            width: 100%;</span><br><span class="line">            height: 100%;</span><br><span class="line">            background: repeating-linear-gradient(</span><br><span class="line">                45deg,</span><br><span class="line">                rgba(255, 255, 255, 0.1),</span><br><span class="line">                rgba(255, 255, 255, 0.1) 5px,</span><br><span class="line">                transparent 5px,</span><br><span class="line">                transparent 10px</span><br><span class="line">            );</span><br><span class="line">            opacity: 0;</span><br><span class="line">            transition: opacity 1s ease-in-out;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div id=&quot;animation-container&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;div id=&quot;control-panel&quot;&gt;</span><br><span class="line">        &lt;button id=&quot;add-ball&quot;&gt;增加小球数量&lt;/button&gt;</span><br><span class="line">        &lt;button id=&quot;start-animation&quot;&gt;开始动画&lt;/button&gt;</span><br><span class="line">        &lt;button id=&quot;pause-animation&quot;&gt;暂停动画&lt;/button&gt;</span><br><span class="line">        &lt;button id=&quot;increase-speed&quot;&gt;提高小球运动速度&lt;/button&gt;</span><br><span class="line">        &lt;button id=&quot;clear-balls&quot;&gt;清除小球&lt;/button&gt;</span><br><span class="line">        &lt;button id=&quot;simulate-wind&quot;&gt;模拟自然风&lt;/button&gt;</span><br><span class="line">        &lt;button id=&quot;clear-wind&quot;&gt;清除自然风&lt;/button&gt;</span><br><span class="line">        &lt;button id=&quot;reset-animation&quot;&gt;重置动画&lt;/button&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">    &lt;script&gt;</span><br><span class="line">        const animationContainer = document.getElementById(&#x27;animation-container&#x27;);</span><br><span class="line">        const balls = [];</span><br><span class="line">        let isPaused = true;</span><br><span class="line">        let gravity = 0.1;</span><br><span class="line">        let speedMultiplier = 1;</span><br><span class="line">        let animationFrameId;</span><br><span class="line">        let windStrength = 0;</span><br><span class="line">        let windEffect;</span><br><span class="line">        const collisionEnergyLoss = 0.9; // 碰撞能量损耗因子</span><br><span class="line"></span><br><span class="line">        // 缓存容器尺寸</span><br><span class="line">        let containerWidth = animationContainer.offsetWidth;</span><br><span class="line">        let containerHeight = animationContainer.offsetHeight;</span><br><span class="line"></span><br><span class="line">        // 响应窗口大小变化</span><br><span class="line">        window.addEventListener(&#x27;resize&#x27;, () =&gt; &#123;</span><br><span class="line">            containerWidth = animationContainer.offsetWidth;</span><br><span class="line">            containerHeight = animationContainer.offsetHeight;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        function createBall() &#123;</span><br><span class="line">            const ball = document.createElement(&#x27;div&#x27;);</span><br><span class="line">            ball.className = &#x27;ball&#x27;;</span><br><span class="line">            const size = Math.random() * 20 + 10;</span><br><span class="line">            const initialX = Math.random() * (containerWidth - size);</span><br><span class="line">            const initialY = 0;</span><br><span class="line"></span><br><span class="line">            Object.assign(ball.style, &#123;</span><br><span class="line">                width: `$&#123;size&#125;px`,</span><br><span class="line">                height: `$&#123;size&#125;px`,</span><br><span class="line">                backgroundColor: `rgb($&#123;Math.random() * 255&#125;,$&#123;Math.random() * 255&#125;,$&#123;Math.random() * 255&#125;)`,</span><br><span class="line">                transform: `translate($&#123;initialX&#125;px, $&#123;initialY&#125;px)`</span><br><span class="line">            &#125;);</span><br><span class="line"></span><br><span class="line">            animationContainer.appendChild(ball);</span><br><span class="line"></span><br><span class="line">            balls.push(&#123;</span><br><span class="line">                element: ball,</span><br><span class="line">                x: initialX,</span><br><span class="line">                y: initialY,</span><br><span class="line">                vx: (Math.random() - 0.5) * 2 * speedMultiplier,</span><br><span class="line">                vy: 0,</span><br><span class="line">                size: size</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        function checkCollision(ball1, ball2) &#123;</span><br><span class="line">            const dx = ball2.x - ball1.x;</span><br><span class="line">            const dy = ball2.y - ball1.y;</span><br><span class="line">            const distance = Math.sqrt(dx * dx + dy * dy);</span><br><span class="line">            return distance &lt; (ball1.size + ball2.size) / 2;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        function handleCollision(ball1, ball2) &#123;</span><br><span class="line">            const dx = ball2.x - ball1.x;</span><br><span class="line">            const dy = ball2.y - ball1.y;</span><br><span class="line">            const distance = Math.sqrt(dx * dx + dy * dy);</span><br><span class="line">            const normalX = dx / distance;</span><br><span class="line">            const normalY = dy / distance;</span><br><span class="line"></span><br><span class="line">            const v1n = ball1.vx * normalX + ball1.vy * normalY;</span><br><span class="line">            const v2n = ball2.vx * normalX + ball2.vy * normalY;</span><br><span class="line">            const v1t = ball1.vx - v1n * normalX;</span><br><span class="line">            const v2t = ball2.vx - v2n * normalX;</span><br><span class="line"></span><br><span class="line">            const m1 = ball1.size;</span><br><span class="line">            const m2 = ball2.size;</span><br><span class="line"></span><br><span class="line">            const v1nNew = (v1n * (m1 - m2) + 2 * m2 * v2n) / (m1 + m2);</span><br><span class="line">            const v2nNew = (v2n * (m2 - m1) + 2 * m1 * v1n) / (m1 + m2);</span><br><span class="line"></span><br><span class="line">            // 应用能量损耗</span><br><span class="line">            ball1.vx = (v1t + v1nNew * normalX) * collisionEnergyLoss;</span><br><span class="line">            ball1.vy = (v1t + v1nNew * normalY) * collisionEnergyLoss;</span><br><span class="line">            ball2.vx = (v2t + v2nNew * normalX) * collisionEnergyLoss;</span><br><span class="line">            ball2.vy = (v2t + v2nNew * normalY) * collisionEnergyLoss;</span><br><span class="line"></span><br><span class="line">            // 将小球稍微分开，避免重叠</span><br><span class="line">            const overlap = (ball1.size + ball2.size) / 2 - distance;</span><br><span class="line">            ball1.x -= overlap * 0.5 * normalX;</span><br><span class="line">            ball1.y -= overlap * 0.5 * normalY;</span><br><span class="line">            ball2.x += overlap * 0.5 * normalX;</span><br><span class="line">            ball2.y += overlap * 0.5 * normalY;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        function updatePhysics() &#123;</span><br><span class="line">            for (let i = balls.length - 1; i &gt;= 0; i--) &#123;</span><br><span class="line">                const ball = balls[i];</span><br><span class="line">                ball.vx += windStrength * speedMultiplier;</span><br><span class="line">                ball.vy += gravity * speedMultiplier;</span><br><span class="line">                ball.x += ball.vx;</span><br><span class="line">                ball.y += ball.vy;</span><br><span class="line"></span><br><span class="line">                if (ball.x &lt; 0) &#123;</span><br><span class="line">                    ball.x = 0;</span><br><span class="line">                    ball.vx = -ball.vx;</span><br><span class="line">                &#125; else if (ball.x &gt; containerWidth - ball.size) &#123;</span><br><span class="line">                    ball.x = containerWidth - ball.size;</span><br><span class="line">                    ball.vx = -ball.vx;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                if (ball.y &gt; containerHeight - ball.size) &#123;</span><br><span class="line">                    ball.y = containerHeight - ball.size;</span><br><span class="line">                    ball.vy = -ball.vy * 0.8;</span><br><span class="line">                    if (Math.abs(ball.vy) &lt; 0.5) &#123;</span><br><span class="line">                        ball.vy = 0;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                ball.element.style.transform = `translate($&#123;ball.x&#125;px, $&#123;ball.y&#125;px)`;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            for (let i = 0; i &lt; balls.length; i++) &#123;</span><br><span class="line">                for (let j = i + 1; j &lt; balls.length; j++) &#123;</span><br><span class="line">                    if (checkCollision(balls[i], balls[j])) &#123;</span><br><span class="line">                        handleCollision(balls[i], balls[j]);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        function animate() &#123;</span><br><span class="line">            if (!isPaused) &#123;</span><br><span class="line">                updatePhysics();</span><br><span class="line">            &#125;</span><br><span class="line">            animationFrameId = requestAnimationFrame(animate);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        function clearBalls() &#123;</span><br><span class="line">            while (balls.length &gt; 0) &#123;</span><br><span class="line">                const ball = balls.pop();</span><br><span class="line">                animationContainer.removeChild(ball.element);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        function simulateWind() &#123;</span><br><span class="line">            windStrength = (Math.random() - 0.5) * 0.2;</span><br><span class="line"></span><br><span class="line">            if (!windEffect) &#123;</span><br><span class="line">                windEffect = document.createElement(&#x27;div&#x27;);</span><br><span class="line">                windEffect.className = &#x27;wind-effect&#x27;;</span><br><span class="line">                animationContainer.appendChild(windEffect);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            windEffect.style.opacity = 1;</span><br><span class="line"></span><br><span class="line">            setTimeout(() =&gt; &#123;</span><br><span class="line">                windEffect.style.opacity = 0;</span><br><span class="line">            &#125;, 3000);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        function clearWind() &#123;</span><br><span class="line">            windStrength = 0;</span><br><span class="line">            if (windEffect) &#123;</span><br><span class="line">                windEffect.style.opacity = 0;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        function resetAnimation() &#123;</span><br><span class="line">            clearBalls();</span><br><span class="line">            clearWind();</span><br><span class="line">            isPaused = true;</span><br><span class="line">            speedMultiplier = 1;</span><br><span class="line">            if (windEffect) &#123;</span><br><span class="line">                animationContainer.removeChild(windEffect);</span><br><span class="line">                windEffect = null;</span><br><span class="line">            &#125;</span><br><span class="line">            createBall();</span><br><span class="line">            isPaused = false;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        document.getElementById(&#x27;add-ball&#x27;).addEventListener(&#x27;click&#x27;, createBall);</span><br><span class="line">        document.getElementById(&#x27;start-animation&#x27;).addEventListener(&#x27;click&#x27;, () =&gt; &#123;</span><br><span class="line">            if (isPaused) &#123;</span><br><span class="line">                isPaused = false;</span><br><span class="line">                if (!animationFrameId) animate();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        document.getElementById(&#x27;pause-animation&#x27;).addEventListener(&#x27;click&#x27;, () =&gt; &#123;</span><br><span class="line">            isPaused = true;</span><br><span class="line">        &#125;);</span><br><span class="line">        document.getElementById(&#x27;increase-speed&#x27;).addEventListener(&#x27;click&#x27;, () =&gt; &#123;</span><br><span class="line">            speedMultiplier = Math.min(speedMultiplier * 1.2, 5);</span><br><span class="line">        &#125;);</span><br><span class="line">        document.getElementById(&#x27;clear-balls&#x27;).addEventListener(&#x27;click&#x27;, clearBalls);</span><br><span class="line">        document.getElementById(&#x27;simulate-wind&#x27;).addEventListener(&#x27;click&#x27;, simulateWind);</span><br><span class="line">        document.getElementById(&#x27;clear-wind&#x27;).addEventListener(&#x27;click&#x27;, clearWind);</span><br><span class="line">        document.getElementById(&#x27;reset-animation&#x27;).addEventListener(&#x27;click&#x27;, resetAnimation);</span><br><span class="line"></span><br><span class="line">        createBall();</span><br><span class="line">        animate();</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></div>
+              </div>
+            </details>
+		</div>
+
+		
+		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+			<div class="article-copyright-info-container">
+    <ul>
+        <li><strong>标题:</strong> 基于js的重力模拟研究</li>
+        <li><strong>作者:</strong> YQYStudio(一个为人民服务的公仆)</li>
+        <li><strong>创建于
+                :</strong> 2025-02-09 22:48:23</li>
+        
+            <li>
+                <strong>更新于
+                    :</strong> 2025-02-09 23:11:11
+            </li>
+        
+        <li>
+            <strong>链接:</strong> https://yqystudio-github-io.pages.dev/2025/02/09/基于js的重力模拟研究/
+        </li>
+        <li>
+            <strong>
+                版权声明:
+            </strong>
+            
+
+            
+                本文章采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a> 进行许可。
+            
+        </li>
+    </ul>
+</div>
+
+		</div>
+		
+
+		
+		<ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/%E6%8A%80%E6%9C%AF/">#技术</a>&nbsp;
+			</li>
+			
+		</ul>
+		
+
+		
+  <div class="recommended-article px-2 sm:px-6 md:px-8">
+   <div class="recommended-desktop">
+    <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
+     <i aria-hidden="true"></i><span>推荐阅读</span>
+    </div>
+    <div class="recommended-article-group"><a class="recommended-article-item" href="/2025/01/31/自制开源本地播放器本地播放器/" title="自制开源本地播放器" rel="bookmark">
+  <img src="https://haowallpaper.com/link/common/file/previewFileImg/16270165157793152" alt="自制开源本地播放器" class="!max-w-none">
+  <span class="title">自制开源本地播放器</span>
+</a><a class="recommended-article-item" href="/2025/02/03/Actions踩坑/" title="Actions踩坑" rel="bookmark">
+  <img src="https://haowallpaper.com/link/common/file/previewFileImg/15624832803574080" alt="Actions踩坑" class="!max-w-none">
+  <span class="title">Actions踩坑</span>
+</a><a class="recommended-article-item" href="/2025/01/31/1-31公考资料分享/" title="1.31公考资料分享" rel="bookmark">
+  <img src="https://cdn.pixabay.com/photo/2025/01/20/20/11/shrine-9348003_1280.jpg" alt="1.31公考资料分享" class="!max-w-none">
+  <span class="title">1.31公考资料分享</span>
+</a></div>
+   </div>
+   <div class="recommended-mobile">
+   <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
+     <i aria-hidden="true"></i><span>推荐阅读</span>
+   </div>
+   <div class="recommended-article-group"><a class="recommended-article-item" href="/2025/01/31/自制开源本地播放器本地播放器/" title="自制开源本地播放器" rel="bookmark">
+  <img src="https://haowallpaper.com/link/common/file/previewFileImg/16270165157793152" alt="自制开源本地播放器" class="!max-w-none">
+  <span class="title">自制开源本地播放器</span>
+</a><a class="recommended-article-item" href="/2025/02/03/Actions踩坑/" title="Actions踩坑" rel="bookmark">
+  <img src="https://haowallpaper.com/link/common/file/previewFileImg/15624832803574080" alt="Actions踩坑" class="!max-w-none">
+  <span class="title">Actions踩坑</span>
+</a></div>
+   </div>
+  </div>
+
+		
+		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+			
+			
+			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="next" rel="next" href="/2025/02/09/2-9%E5%85%AC%E8%80%83%E8%B5%84%E6%96%99%E5%88%86%E4%BA%AB/">
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item">2-9公考资料分享</span>
+						<span class="post-nav-item">下一篇</span>
+					</span>
+					<span class="right arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-right"></i>
+					</span>
+				</a>
+			</div>
+			
+		</div>
+		
+
+
+		
+		<div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+			<div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        评论
+    </div>
+    
+
+        
+            
+    <div id="giscus-container"></div>
+    <script data-swup-reload-script defer>
+        async function loadGiscus() {
+            const giscusConfig = {
+                'src': 'https://giscus.app/client.js',
+                'data-repo': 'YQYStudio/Gitalk_comment_store',
+                'data-repo-id': 'R_kgDONyPiwg',
+                'data-category': 'General',
+                'data-category-id': 'DIC_kwDONyPiws4CmgE6',
+                'data-mapping': 'title',
+                'data-strict': '0',
+                'data-reactions-enabled': '1',
+                'data-emit-metadata': '1',
+                'data-theme': 'preferred_color_scheme',
+                'data-lang': 'en',
+                'data-input-position': 'bottom',
+                'data-loading': 'lazy',
+                'crossorigin': 'anonymous',
+                'async': true
+            }
+            const giscusScript = document.createElement('script');
+            for (const key in giscusConfig) {
+                giscusScript.setAttribute(key, giscusConfig[key]);
+            }
+            document.getElementById('giscus-container').appendChild(giscusScript);
+        }
+        if ('true') {
+            let loadGiscusTimeout = setTimeout(() => {
+                loadGiscus();
+                clearTimeout(loadGiscusTimeout);
+            }, 1000);
+        } else {
+            document.addEventListener('DOMContentLoaded', loadGiscus);
+        }
+    </script>
+
+
+        
+        
+    
+</div>
+
+		</div>
+		
+	</div>
+
+	
+	<div class="toc-content-container">
+		<div class="post-toc-wrap">
+	<div class="post-toc">
+		<div class="toc-title">目录</div>
+		<div class="page-title">基于js的重力模拟研究</div>
+		
+
+	</div>
+</div>
+	</div>
+	
+</div>
+			</div>
+
+			
+		</div>
+
+		<div class="main-content-footer">
+			<footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+            <div class="customize-info my-1">每一次遇见，都是千载难逢的幸运，每一次交流，都是前世今生的缘分，愿您，平安喜乐，事事皆顺...</div>
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2025</span>
+              -
+            
+            2025&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">YQYStudio(一个为人民服务的公仆)</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        共撰写了 11 篇文章
+                    </span>
+                    
+                        <span>
+                            共 5.8k 字
+                        </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">访问人数</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">总访问量</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a> 驱动</span>
+            <span class="text-sm lg:block">主题&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.2</a></span>
+        </div>
+        
+        
+            <div>
+                博客已运行 <span class="odometer" id="runtime_days" ></span> 天 <span class="odometer" id="runtime_hours"></span> 小时 <span class="odometer" id="runtime_minutes"></span> 分钟 <span class="odometer" id="runtime_seconds"></span> 秒
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+		</div>
+	</div>
+
+	
+	<div class="post-tools">
+		<div class="post-tools-container">
+	<ul class="article-tools-list">
+		<!-- TOC aside toggle -->
+		
+		<li class="right-bottom-tools page-aside-toggle">
+			<i class="fa-regular fa-outdent"></i>
+		</li>
+		
+
+		<!-- go comment -->
+		
+		<li class="go-comment">
+			<i class="fa-regular fa-comments"></i>
+		</li>
+		
+	</ul>
+</div>
+	</div>
+	
+
+	<div class="right-side-tools-container">
+		<div class="side-tools-container">
+	<ul class="hidden-tools-list">
+		<li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-plus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-minus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+			<i class="fa-regular fa-moon"></i>
+		</li>
+
+		<!-- rss -->
+		
+
+		
+
+		<li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+			<i class="fa-regular fa-arrow-down"></i>
+		</li>
+	</ul>
+
+	<ul class="visible-tools-list">
+		<li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+			<i class="fa-regular fa-cog fa-spin"></i>
+		</li>
+		
+		<li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+			<i class="arrow-up fas fa-arrow-up"></i>
+			<span class="percent"></span>
+		</li>
+		
+		
+	</ul>
+</div>
+	</div>
+
+	<div class="image-viewer-container">
+	<img src="">
+</div>
+
+	
+	<div class="search-pop-overlay">
+	<div class="popup search-popup">
+		<div class="search-header">
+			<span class="search-input-field-pre">
+				<i class="fa-solid fa-keyboard"></i>
+			</span>
+			<div class="search-input-container">
+				<input autocomplete="off" autocorrect="off" autocapitalize="off" placeholder="站内搜索您需要的内容..." spellcheck="false" type="search" class="search-input">
+			</div>
+			<span class="popup-btn-close">
+				<i class="fa-solid fa-times"></i>
+			</span>
+		</div>
+		<div id="search-result">
+			<div id="no-result">
+				<i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+			</div>
+		</div>
+	</div>
+</div>
+	
+
+</main>
+
+
+
+<script src="/js/build/libs/Swup.min.js"></script>
+
+<script src="/js/build/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/build/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+	
+<script src="/js/build/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/build/utils.js" type="module"></script>
+
+<script src="/js/build/main.js" type="module"></script>
+
+<script src="/js/build/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/build/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/build/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/build/layouts/categoryList.js" type="module"></script>
+
+
+
+    
+<script src="/js/build/tools/localSearch.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/tools/runtime.js"></script>
+
+    
+<script src="/js/build/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/build/libs/Typed.min.js"></script>
+
+  
+<script src="/js/build/plugins/typed.js" type="module"></script>
+
+
+
+
+    
+        
+<script src="/js/build/libs/mermaid.min.js"></script>
+
+    
+    
+<script src="/js/build/plugins/mermaid.js"></script>
+
+
+
+
+    
+<script src="/js/build/libs/minimasonry.min.js"></script>
+
+    
+<script src="/js/build/plugins/masonry.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/libs/anime.min.js"></script>
+
+
+
+
+
+    
+<script src="/js/build/tools/tocToggle.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/layouts/toc.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/plugins/tabs.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+<script src="/js/build/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
+
+
+<script src="/js/build/layouts/essays.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+
+	
+	<div id="aplayer"></div>
+
+<script src="/js/build/libs/APlayer.min.js"></script>
+
+
+<script src="/js/build/plugins/aplayer.js"></script>
+
+
+	
+</body>
+
+</html>
