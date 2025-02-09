@@ -417,6 +417,103 @@ import {initHBE} from "/js/plugins/hbe.js";
       </tags>
   </entry>
   <entry>
+    <title>2月壁纸分享第四弹</title>
+    <url>/2025/02/09/2%E6%9C%88%E5%A3%81%E7%BA%B8%E5%88%86%E4%BA%AB%E7%AC%AC%E5%9B%9B%E5%BC%B9/</url>
+    <content><![CDATA[<div>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://api.zzzmh.cn/v2/bz/v3/getUrl/e35882a800d24c1d8ba17046d82f2f8a21"
+                      
+                >
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://api.zzzmh.cn/v2/bz/v3/getUrl/333e1bd146e7442c8dcf4ae02a725b3c21"
+                      
+                >
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://api.zzzmh.cn/v2/bz/v3/getUrl/328d22a7d8e94839b4f0c05163574f1221"
+                      
+                >
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://api.zzzmh.cn/v2/bz/v3/getUrl/a45c385946134c18bffe825d0f53eb5c21"
+                      
+                >
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://api.zzzmh.cn/v2/bz/v3/getUrl/534c435c76ca490cb0e7b4b09f81e82b21"
+                      
+                >
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://api.zzzmh.cn/v2/bz/v3/getUrl/3f334bce21a14d77ac365fa5f0f42aea21"
+                      
+                >
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://api.zzzmh.cn/v2/bz/v3/getUrl/f59ae973e47a4d4480c26fa72ffecb2c21"
+                      
+                >
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://api.zzzmh.cn/v2/bz/v3/getUrl/6a7a7b3bfa95490fa22c53555b44942521"
+                      
+                >
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://api.zzzmh.cn/v2/bz/v3/getUrl/e622484b633e4b348f3aefcdeb814d0021"
+                      
+                >
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://api.zzzmh.cn/v2/bz/v3/getUrl/cd6be091fe204ec397f1f89ef054a78821"
+                      
+                >
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://api.zzzmh.cn/v2/bz/v3/getUrl/443e73a3b99749b294fedeb667bc656221"
+                      
+                >
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://api.zzzmh.cn/v2/bz/v3/getUrl/46788147c7474c9b90d4beb3140914e621"
+                      
+                >
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://api.zzzmh.cn/v2/bz/v3/getUrl/0af52bc3b2ad42c3a10bcdc0e5df3e4521"
+                      
+                >
+<img src="" />
+<img src="" />
+<img src="" />
+<img src="" />
+<img src="" />
+</div>]]></content>
+      <categories>
+        <category>资源分享</category>
+      </categories>
+      <tags>
+        <tag>壁纸</tag>
+        <tag>资源分享</tag>
+        <tag>美图</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Actions踩坑</title>
     <url>/2025/02/03/Actions%E8%B8%A9%E5%9D%91/</url>
     <content><![CDATA[<h1 id="踩坑了，结合我踩得坑和搜的解决方式，汇总下容易踩坑的点，同时给出完整流程"><a href="#踩坑了，结合我踩得坑和搜的解决方式，汇总下容易踩坑的点，同时给出完整流程" class="headerlink" title="踩坑了，结合我踩得坑和搜的解决方式，汇总下容易踩坑的点，同时给出完整流程"></a>踩坑了，结合我踩得坑和搜的解决方式，汇总下容易踩坑的点，同时给出完整流程</h1><h3 id="1-工作流文件路径和命名"><a href="#1-工作流文件路径和命名" class="headerlink" title="1. 工作流文件路径和命名"></a>1. 工作流文件路径和命名</h3><p>GitHub Actions 的工作流文件需要存放在仓库的 <code>.github/workflows</code> 目录下，并且文件名必须以 <code>.yml</code> 或 <code>.yaml</code> 结尾。很多新手可能会把文件放错位置或者命名错误，导致工作流无法正常触发。</p>
