@@ -3,305 +3,385 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>在线 HTML 代码编辑器</title>
+    <title>在线HTML代码调试器</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/theme/monokai.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/theme/default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/addon/hint/show-hint.min.css">
     <style>
-        :root {
-            --primary-color: #4a90e2;
-            --secondary-color: #f8f9fa;
-            --border-radius: 8px;
-            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
         body {
-            display: flex;
-            margin: 20px;
-            height: calc(100vh - 40px);
-            font-family: 'Segoe UI', system-ui, sans-serif;
-            gap: 20px;
-            background-color: #f0f2f5;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            color: #f3f4f6;
+            transition: background 0.5s ease, color 0.5s ease;
         }
-        /* 输入区域 */
-        #input-area {
-            flex: 1;
-            min-width: 400px;
-            background: white;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-            padding: 24px;
-            display: flex;
-            flex-direction: column;
+        body.light {
+            background: linear-gradient(135deg, #fefcbf, #fed7aa);
+            color: #1f2937;
         }
-        #code-input {
-            flex: 1;
+        .CodeMirror {
+            height: 70vh; /* Increased height for better view */
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            font-size: 15px;
+        }
+        .CodeMirror:focus-within {
+            transform: scale(1.01);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+        .CodeMirror-scroll {
+            overflow: auto !important;
+        }
+        .CodeMirror ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .CodeMirror ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+        }
+        .CodeMirror ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+        .CodeMirror ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        body.light .CodeMirror ::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.3);
+        }
+        body.light .CodeMirror ::-webkit-scrollbar-thumb:hover {
+            background: rgba(0, 0, 0, 0.5);
+        }
+        #preview {
             width: 100%;
-            padding: 16px;
-            border: 2px solid #e9ecef;
-            border-radius: var(--border-radius);
-            font-family: 'Fira Code', monospace;
-            font-size: 14px;
-            line-height: 1.5;
-            resize: none;
-            transition: border-color 0.3s ease;
-        }
-        #code-input:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
-        }
-        /* 功能区 */
-        #function-area {
-            width: 240px;
-            background: white;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-        button {
-            padding: 12px 20px;
+            height: 70vh; /* Increased height for better view */
             border: none;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+        #preview:hover {
+            transform: scale(1.01);
+        }
+        #runButton, #clearButton, #themeToggle, #maximizePreview, #togglePreview {
+            transition: transform 0.2s ease, background-color 0.3s ease;
+        }
+        #runButton:hover, #clearButton:hover, #themeToggle:hover, #maximizePreview:hover, #togglePreview:hover {
+            transform: translateY(-2px);
+        }
+        #errorLog {
+            color: #f87171;
+            font-size: 14px;
+            max-height: 80px;
+            overflow-y: auto;
+            background: transparent;
+            padding: 10px 0;
             border-radius: 6px;
-            background: var(--primary-color);
-            color: white;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
+            margin-top: 10px;
+            display: none;
         }
-        button:hover {
-            background: #357abd;
-            transform: translateY(-1px);
-            box-shadow: var(--shadow);
+        #errorLog:not(:empty) {
+            display: block;
+            background: #1e293b;
+            padding: 10px;
         }
-        button:active {
-            transform: translateY(0);
+        body.light #errorLog:not(:empty) {
+            background: #f3f4f6;
+            color: #dc2626;
         }
-        /* 模态框 */
+        .navbar {
+            background: rgba(17, 24, 39, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            transition: background 0.5s ease;
+        }
+        body.light .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            color: #1f2937;
+        }
+        .animate-pulse-slow {
+            animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
         .modal {
             display: none;
             position: fixed;
-            top: 0;
+            z-index: 1000;
             left: 0;
+            top: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.4);
-            justify-content: center;
-            align-items: center;
-            backdrop-filter: blur(2px);
-            z-index: 1000;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.5);
+            padding-top: 60px;
         }
         .modal-content {
-            background: white;
-            border-radius: var(--border-radius);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
             width: 80%;
-            height: 70%;
-            min-width: 400px;
-            min-height: 300px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
+            height: 80vh;
+            border-radius: 8px;
+            position: relative;
         }
-        .modal-header {
-            padding: 16px 24px;
-            background: var(--secondary-color);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #dee2e6;
-        }
-        .modal-title {
-            font-weight: 600;
-            color: #212529;
-        }
-        .close {
-            font-size: 24px;
-            color: #6c757d;
-            cursor: pointer;
-            transition: color 0.2s ease;
-        }
-        .close:hover {
-            color: #dc3545;
-        }
-        .modal-body {
-            flex: 1;
-            padding: 0;
-            background: white;
-        }
-        #result {
-            width: 100%;
-            height: 100%;
+        .modal-content.fullscreen {
+            margin: 0;
+            width: 100vw;
+            height: 100vh;
             border: none;
+            border-radius: 0;
         }
-        /* 调整大小手柄 */
-        .resizer {
-            position: absolute;
-            background: var(--primary-color);
-            opacity: 0;
-            transition: opacity 0.2s ease;
+        .close, .fullscreen-btn {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-left: 10px;
         }
-        .resizer.right {
-            right: 0;
-            top: 0;
-            width: 4px;
-            height: 100%;
-            cursor: col-resize;
+        .close:hover, .close:focus, .fullscreen-btn:hover, .fullscreen-btn:focus {
+            color: black;
+            text-decoration: none;
         }
-        .resizer.bottom {
-            bottom: 0;
-            left: 0;
+        #modalPreview {
             width: 100%;
-            height: 4px;
-            cursor: row-resize;
-        }
-        .resizer.bottom-right {
-            right: 0;
-            bottom: 0;
-            width: 12px;
-            height: 12px;
-            cursor: nwse-resize;
-            background: none;
-            border-right: 2px solid var(--primary-color);
-            border-bottom: 2px solid var(--primary-color);
-        }
-        .modal-content:hover .resizer {
-            opacity: 0.3;
+            height: calc(100% - 40px);
+            border: none;
         }
     </style>
 </head>
-<body>
-    <div id="input-area">
-        <textarea id="code-input" placeholder="请输入 HTML 代码..."></textarea>
-    </div>
-    <div id="function-area">
-        <button id="run-code">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 8px;">
-                <path d="M8 5v14l11-7z"/>
-            </svg>
-            运行代码
-        </button>
-        <button id="copy-code">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 8px;">
-                <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
-            </svg>
-            复制代码
-        </button>
-    </div>
-    <div id="modal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <span class="modal-title">运行结果</span>
-                <span class="close">&times;</span>
-            </div>
-            <div class="modal-body">
-                <iframe id="result"></iframe>
-            </div>
-            <div class="resizer right"></div>
-            <div class="resizer bottom"></div>
-            <div class="resizer bottom-right"></div>
+<body class="flex flex-col h-screen">
+    <div class="navbar p-4 flex justify-between items-center">
+        <h1 class="text-2xl font-bold animate__animated animate__fadeInDown">在线HTML代码调试器</h1>
+        <div class="space-x-3">
+            <button id="runButton" class="bg-blue-500 hover:bg-blue-600 text-white px-5 py-2 rounded-lg shadow-md animate__animated animate__fadeInRight">运行</button>
+            <button id="togglePreview" class="bg-indigo-500 hover:bg-indigo-600 text-white px-5 py-2 rounded-lg shadow-md animate__animated animate__fadeInRight">显示预览</button>
+            <button id="clearButton" class="bg-gray-600 hover:bg-gray-700 text-white px-5 py-2 rounded-lg shadow-md animate__animated animate__fadeInRight">清空</button>
+            <button id="themeToggle" class="bg-purple-500 hover:bg-purple-600 text-white px-5 py-2 rounded-lg shadow-md animate__animated animate__fadeInRight">切换主题</button>
+            <button id="maximizePreview" class="bg-green-500 hover:bg-green-600 text-white px-5 py-2 rounded-lg shadow-md animate__animated animate__fadeInRight">最大化预览</button>
         </div>
     </div>
+    <div class="flex flex-1 p-6 space-x-6">
+        <div class="w-full editor-container">
+            <h2 class="text-lg font-semibold mb-3 animate__animated animate__fadeInLeft">代码编辑区</h2>
+            <div id="editor" class="animate__animated animate__fadeInUp"></div>
+        </div>
+        <div class="w-1/2 preview-container hidden">
+            <h2 class="text-lg font-semibold mb-3 animate__animated animate__fadeInRight">预览区</h2>
+            <iframe id="preview" class="w-full animate__animated animate__fadeInUp"></iframe>
+            <div id="errorLog" class="animate-pulse-slow"></div>
+        </div>
+    </div>
+    <div id="previewModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <span class="fullscreen-btn">&#x26F6;</span>
+            <iframe id="modalPreview"></iframe>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/mode/xml/xml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/mode/javascript/javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/mode/css/css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/mode/htmlmixed/htmlmixed.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/addon/hint/show-hint.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/addon/hint/xml-hint.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/addon/hint/html-hint.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/addon/hint/css-hint.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/addon/hint/javascript-hint.min.js"></script>
     <script>
-        // 元素引用
-        const codeInput = document.getElementById('code-input');
-        const runCodeButton = document.getElementById('run-code');
-        const copyCodeButton = document.getElementById('copy-code');
-        const resultFrame = document.getElementById('result');
-        const modal = document.getElementById('modal');
-        const closeBtn = document.querySelector('.close');
-        // 运行代码功能
-        runCodeButton.addEventListener('click', () => {
-            const code = codeInput.value;
-            modal.style.display = 'flex';
-            resultFrame.srcdoc = code; // 更安全的代码执行方式
-        });
-        // 复制代码功能（使用现代 Clipboard API）
-        copyCodeButton.addEventListener('click', async () => {
-            try {
-                await navigator.clipboard.writeText(codeInput.value);
-                showToast('代码已复制到剪贴板！');
-            } catch (err) {
-                showToast('复制失败，请手动选择复制');
-            }
-        });
-        // 关闭模态框
-        function closeModal() {
-            modal.style.display = 'none';
-        }
-        closeBtn.addEventListener('click', closeModal);
-        modal.addEventListener('click', (e) => e.target === modal && closeModal());
-        // 模态框拖动功能优化
-        let isDragging = false;
-        let startX, startY, initialX, initialY;
-        document.querySelector('.modal-header').addEventListener('mousedown', (e) => {
-            isDragging = true;
-            const rect = modal.querySelector('.modal-content').getBoundingClientRect();
-            startX = e.clientX;
-            startY = e.clientY;
-            initialX = rect.left;
-            initialY = rect.top;
-            e.preventDefault();
-        });
-        document.addEventListener('mousemove', (e) => {
-            if (!isDragging) return;
-            const dx = e.clientX - startX;
-            const dy = e.clientY - startY;
-            modal.querySelector('.modal-content').style.left = `${initialX + dx}px`;
-            modal.querySelector('.modal-content').style.top = `${initialY + dy}px`;
-        });
-        document.addEventListener('mouseup', () => isDragging = false);
-        // 调整大小功能优化
-        let currentResizer;
-        const resizers = document.querySelectorAll('.resizer');
-        resizers.forEach(resizer => {
-            resizer.addEventListener('mousedown', (e) => {
-                currentResizer = resizer;
-                const content = modal.querySelector('.modal-content');
-                startX = e.clientX;
-                startY = e.clientY;
-                initialX = content.offsetWidth;
-                initialY = content.offsetHeight;
-                e.preventDefault();
-            });
-        });
-        document.addEventListener('mousemove', (e) => {
-            if (!currentResizer) return;
-            const content = modal.querySelector('.modal-content');
-            const dx = e.clientX - startX;
-            const dy = e.clientY - startY;
-            if (currentResizer.classList.contains('right')) {
-                content.style.width = `${Math.max(300, initialX + dx)}px`;
-            } else if (currentResizer.classList.contains('bottom')) {
-                content.style.height = `${Math.max(200, initialY + dy)}px`;
-            } else if (currentResizer.classList.contains('bottom-right')) {
-                content.style.width = `${Math.max(300, initialX + dx)}px`;
-                content.style.height = `${Math.max(200, initialY + dy)}px`;
-            }
-        });
-        document.addEventListener('mouseup', () => currentResizer = null);
-        // 提示功能
-        function showToast(message) {
-            const toast = document.createElement('div');
-            toast.textContent = message;
-            toast.style.cssText = `
-                position: fixed;
-                bottom: 20px;
-                left: 50%;
-                transform: translateX(-50%);
-                background: rgba(0,0,0,0.8);
-                color: white;
-                padding: 12px 24px;
-                border-radius: 4px;
-                font-size: 14px;
-                transition: 0.3s all;
-            `;
-            document.body.appendChild(toast);
-            setTimeout(() => toast.remove(), 2000);
-        }
-    </script>
+        const editorElement = document.getElementById('editor');
+        const preview = document.getElementById('preview');
+        const modal = document.getElementById('previewModal');
+        const modalPreview = document.getElementById('modalPreview');
+        const modalContent = modal.querySelector('.modal-content');
+        const closeBtn = modal.querySelector('.close');
+        const fullscreenBtn = modal.querySelector('.fullscreen-btn');
+        const errorLog = document.getElementById('errorLog');
+        const runButton = document.getElementById('runButton');
+        const clearButton = document.getElementById('clearButton');
+        const themeToggle = document.getElementById('themeToggle');
+        const maximizePreview = document.getElementById('maximizePreview');
+        const togglePreviewButton = document.getElementById('togglePreview');
+        const editorContainer = document.querySelector('.editor-container');
+        const previewContainer = document.querySelector('.preview-container');
+        const navbar = document.querySelector('.navbar');
+        const body = document.body;
+        let isDarkTheme = true;
+        let isModalFullscreen = false;
+        let isPreviewVisible = false; // Initial state: preview is hidden
+
+<pre><code>    const cm = CodeMirror(editorElement, &#123;
+        mode: &#39;htmlmixed&#39;,
+        theme: &#39;monokai&#39;,
+        lineNumbers: true,
+        autofocus: true,
+        indentUnit: 4,
+        indentWithTabs: false,
+        extraKeys: &#123; &#39;Ctrl-Space&#39;: &#39;autocomplete&#39; &#125;,
+        hintOptions: &#123; completeSingle: false &#125;,
+        value: `&lt;!DOCTYPE html&gt;
+</code></pre>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>示例页面</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; background: #f0f4f8; }
+        h1 { color: #1e40af; }
+        p { font-size: 18px; color: #4b5563; }
+    </style>
+</head>
+<body>
+    <h1>欢迎体验在线调试器！</h1>
+    <p>在这里你可以编写和测试HTML、CSS、JavaScript代码。</p>
+    <p>点击顶部的 <strong>显示预览</strong> 按钮来查看效果！</p>
 </body>
+</html>`
+        });
+
+<pre><code>    function updatePreview() &#123;
+        if (!isPreviewVisible) return; // Don&#39;t update if preview is hidden
+        const code = cm.getValue();
+        errorLog.textContent = &#39;&#39;;
+        try &#123;
+            const doc = preview.contentDocument || preview.contentWindow.document;
+            doc.open();
+            doc.write(code);
+            doc.close();
+        &#125; catch (error) &#123;
+            errorLog.textContent = &#39;错误: &#39; + error.message;
+            errorLog.classList.add(&#39;animate__animated&#39;, &#39;animate__shakeX&#39;);
+            setTimeout(() =&gt; errorLog.classList.remove(&#39;animate__animated&#39;, &#39;animate__shakeX&#39;), 1000);
+        &#125;
+    &#125;
+
+    function updateModalPreview() &#123;
+        const code = cm.getValue();
+        try &#123;
+            const doc = modalPreview.contentDocument || modalPreview.contentWindow.document;
+            doc.open();
+            doc.write(code);
+            doc.close();
+        &#125; catch (error) &#123;
+            // Can add error handling in modal if needed
+        &#125;
+    &#125;
+    
+    // --- NEW FEATURE: Toggle Preview ---
+    togglePreviewButton.addEventListener(&#39;click&#39;, () =&gt; &#123;
+        isPreviewVisible = !isPreviewVisible;
+        if (isPreviewVisible) &#123;
+            // Show preview
+            previewContainer.classList.remove(&#39;hidden&#39;);
+            editorContainer.classList.remove(&#39;w-full&#39;);
+            editorContainer.classList.add(&#39;w-1/2&#39;);
+            togglePreviewButton.textContent = &#39;隐藏预览&#39;;
+            updatePreview();
+        &#125; else &#123;
+            // Hide preview
+            previewContainer.classList.add(&#39;hidden&#39;);
+            editorContainer.classList.remove(&#39;w-1/2&#39;);
+            editorContainer.classList.add(&#39;w-full&#39;);
+            togglePreviewButton.textContent = &#39;显示预览&#39;;
+        &#125;
+        
+        // Refresh CodeMirror after a short delay to allow layout to update
+        setTimeout(() =&gt; &#123;
+            cm.refresh();
+        &#125;, 10);
+
+        togglePreviewButton.classList.add(&#39;animate__animated&#39;, &#39;animate__pulse&#39;);
+        setTimeout(() =&gt; togglePreviewButton.classList.remove(&#39;animate__animated&#39;, &#39;animate__pulse&#39;), 500);
+    &#125;);
+
+    runButton.addEventListener(&#39;click&#39;, () =&gt; &#123;
+        if (!isPreviewVisible) &#123;
+            // If preview is hidden, show it first then run
+            togglePreviewButton.click();
+        &#125; else &#123;
+            updatePreview();
+        &#125;
+        runButton.classList.add(&#39;animate__animated&#39;, &#39;animate__pulse&#39;);
+        setTimeout(() =&gt; runButton.classList.remove(&#39;animate__animated&#39;, &#39;animate__pulse&#39;), 500);
+    &#125;);
+
+    cm.on(&#39;change&#39;, updatePreview);
+
+    clearButton.addEventListener(&#39;click&#39;, () =&gt; &#123;
+        cm.setValue(&#39;&#39;);
+        if (preview.srcdoc) &#123;
+            preview.srcdoc = &#39;&#39;;
+        &#125;
+        errorLog.textContent = &#39;&#39;;
+        clearButton.classList.add(&#39;animate__animated&#39;, &#39;animate__pulse&#39;);
+        setTimeout(() =&gt; clearButton.classList.remove(&#39;animate__animated&#39;, &#39;animate__pulse&#39;), 500);
+    &#125;);
+
+    themeToggle.addEventListener(&#39;click&#39;, () =&gt; &#123;
+        isDarkTheme = !isDarkTheme;
+        body.classList.toggle(&#39;light&#39;);
+        navbar.classList.toggle(&#39;light&#39;);
+        cm.setOption(&#39;theme&#39;, isDarkTheme ? &#39;monokai&#39; : &#39;default&#39;);
+        themeToggle.textContent = isDarkTheme ? &#39;切换主题&#39; : &#39;深色主题&#39;;
+        
+        // Simplified text color handling for buttons
+        document.querySelectorAll(&#39;.navbar button&#39;).forEach(button =&gt; &#123;
+            button.classList.toggle(&#39;text-white&#39;, isDarkTheme);
+            button.classList.toggle(&#39;text-black&#39;, !isDarkTheme);
+        &#125;);
+        
+        themeToggle.classList.add(&#39;animate__animated&#39;, &#39;animate__pulse&#39;);
+        setTimeout(() =&gt; themeToggle.classList.remove(&#39;animate__animated&#39;, &#39;animate__pulse&#39;), 500);
+    &#125;);
+
+    maximizePreview.addEventListener(&#39;click&#39;, () =&gt; &#123;
+        modal.style.display = &quot;block&quot;;
+        updateModalPreview();
+        maximizePreview.classList.add(&#39;animate__animated&#39;, &#39;animate__pulse&#39;);
+        setTimeout(() =&gt; maximizePreview.classList.remove(&#39;animate__animated&#39;, &#39;animate__pulse&#39;), 500);
+    &#125;);
+
+    closeBtn.addEventListener(&#39;click&#39;, () =&gt; &#123;
+        modal.style.display = &quot;none&quot;;
+        modalContent.classList.remove(&#39;fullscreen&#39;);
+        isModalFullscreen = false;
+    &#125;);
+
+    fullscreenBtn.addEventListener(&#39;click&#39;, () =&gt; &#123;
+        isModalFullscreen = !isModalFullscreen;
+        modalContent.classList.toggle(&#39;fullscreen&#39;);
+    &#125;);
+
+    window.addEventListener(&#39;click&#39;, (event) =&gt; &#123;
+        if (event.target == modal) &#123;
+            modal.style.display = &quot;none&quot;;
+            modalContent.classList.remove(&#39;fullscreen&#39;);
+            isModalFullscreen = false;
+        &#125;
+    &#125;);
+
+    document.addEventListener(&#39;keydown&#39;, (event) =&gt; &#123;
+        if (event.key === &#39;Escape&#39; &amp;&amp; modal.style.display === &quot;block&quot;) &#123;
+            modal.style.display = &quot;none&quot;;
+            modalContent.classList.remove(&#39;fullscreen&#39;);
+            isModalFullscreen = false;
+        &#125;
+    &#125;);
+
+    // No initial call to updatePreview(), as it is hidden by default.
+&lt;/script&gt;
+</code></pre>
+  </body>
 </html>
