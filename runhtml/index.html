@@ -1,697 +1,64 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="keywords" content="Hexo Theme Redefine">
-    
-    <meta name="author" content="YQYStudio(一个为人民服务的公仆)">
-    
-    <!-- Completely eliminate flash of wrong theme -->
-    <script>
-        (function() {
-            const THEME_KEY = "REDEFINE-THEME-STATUS";
-            const DARK = "dark", LIGHT = "light";
-            
-            // Get preferred theme
-            function getTheme() {
-                try {
-                    const saved = localStorage.getItem(THEME_KEY);
-                    if (saved) {
-                        const { isDark } = JSON.parse(saved);
-                        return isDark ? DARK : LIGHT;
-                    }
-                } catch (e) {}
-                
-                return matchMedia("(prefers-color-scheme: dark)").matches ? DARK : LIGHT;
-            }
-            
-            // Apply theme to document
-            function applyTheme(theme) {
-                const isDark = theme === DARK;
-                const root = document.documentElement;
-                
-                // Set data attribute for CSS variables
-                root.setAttribute("data-theme", theme);
-                
-                // Set classes for compatibility
-                root.classList.add(theme);
-                root.classList.remove(isDark ? LIGHT : DARK);
-                root.style.colorScheme = theme;
-            }
-            
-            // Initial application
-            const theme = getTheme();
-            applyTheme(theme);
-            
-            // Listen for system preference changes
-            matchMedia("(prefers-color-scheme: dark)").addEventListener("change", ({ matches }) => {
-                // Only update if using system preference (no localStorage entry)
-                if (!localStorage.getItem(THEME_KEY)) {
-                    applyTheme(matches ? DARK : LIGHT);
-                }
-            });
-            
-            // Set body classes once DOM is ready
-            if (document.readyState !== "loading") {
-                document.body.classList.add(theme + "-mode");
-            } else {
-                document.addEventListener("DOMContentLoaded", () => {
-                    document.body.classList.add(theme + "-mode");
-                    document.body.classList.remove((theme === DARK ? LIGHT : DARK) + "-mode");
-                });
-            }
-        })();
-    </script>
-    
-    <!-- Critical CSS to prevent flash -->
-    <style>
-        :root[data-theme="dark"] {
-            --background-color: #202124;
-            --background-color-transparent: rgba(32, 33, 36, 0.6);
-            --second-background-color: #2d2e32;
-            --third-background-color: #34353a;
-            --third-background-color-transparent: rgba(32, 33, 36, 0.6);
-            --primary-color: #0066CC;
-            --first-text-color: #ffffff;
-            --second-text-color: #eeeeee;
-            --third-text-color: #bebec6;
-            --fourth-text-color: #999999;
-            --default-text-color: #bebec6;
-            --invert-text-color: #373D3F;
-            --border-color: rgba(255, 255, 255, 0.08);
-            --selection-color: #0066CC;
-            --shadow-color-1: rgba(255, 255, 255, 0.08);
-            --shadow-color-2: rgba(255, 255, 255, 0.05);
-        }
-        
-        :root[data-theme="light"] {
-            --background-color: #fff;
-            --background-color-transparent: rgba(255, 255, 255, 0.6);
-            --second-background-color: #f8f8f8;
-            --third-background-color: #f2f2f2;
-            --third-background-color-transparent: rgba(241, 241, 241, 0.6);
-            --primary-color: #0066CC;
-            --first-text-color: #16171a;
-            --second-text-color: #2f3037;
-            --third-text-color: #5e5e5e;
-            --fourth-text-color: #eeeeee;
-            --default-text-color: #373D3F;
-            --invert-text-color: #bebec6;
-            --border-color: rgba(0, 0, 0, 0.08);
-            --selection-color: #0066CC;
-            --shadow-color-1: rgba(0, 0, 0, 0.08);
-            --shadow-color-2: rgba(0, 0, 0, 0.05);
-        }
-        
-        body {
-            background-color: var(--background-color);
-            color: var(--default-text-color);
-        }
-        
-        /* Apply body classes as soon as DOM is ready */
-        :root[data-theme="dark"] body {
-            background-color: var(--background-color);
-            color: var(--default-text-color);
-        }
-    </style>
-    
-    <!-- preconnect -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    
-    <!--- Seo Part-->
-    
-    <link rel="canonical" href="http://example.com/runhtml/"/>
-    <meta name="robots" content="index,follow">
-    <meta name="googlebot" content="index,follow">
-    <meta name="revisit-after" content="1 days">
-    
-    
-    
-        
-        <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/runhtml/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
-<meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/images/redefine-og.webp">
-<meta property="article:published_time" content="2025-09-09T16:00:26.087Z">
-<meta property="article:modified_time" content="2025-09-09T16:00:26.087Z">
-<meta property="article:author" content="John Doe">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/images/redefine-og.webp">
-    
-    
-    <!--- Icon Part-->
-    <link rel="icon" type="image/png" href="/images/moon.ico" sizes="192x192">
-    <link rel="apple-touch-icon" sizes="180x180" href="/images/moon.ico">
-    <meta name="theme-color" content="#A31F34">
-    <link rel="shortcut icon" href="/images/moon.ico">
-    <!--- Page Info-->
-    
-    <title>
-        
-            YQYStudio - 一个轻量化的交流博客.
-        
-    </title>
-
-    
-<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
-
-
-    <!--- Inject Part-->
-    
-
-    
-<link rel="stylesheet" href="/css/style.css">
-
-
-    
-        
-<link rel="stylesheet" href="/css/build/tailwind.css">
-
-    
-
-    
-<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
-
-    
-<link rel="stylesheet" href="/fonts/Geist/geist.css">
-
-    <!--- Font Part-->
-    
-    
-    
-    
-    
-    
-
-    <script id="hexo-configurations">
-    window.config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.xml"};
-    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":["初窥门径","略有小成","融会贯通","炉火纯青"," 登峰造极","返璞归真","万象归真"]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"pangu_js":false,"recommendation":{"enable":true,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":true},"scroll_progress":{"bar":true,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"side_tools":{"gear_rotation":true,"auto_expand":false},"open_graph":{"enable":true,"image":"/images/redefine-og.webp","description":"Hexo Theme Redefine, Redefine Your Hexo Journey."},"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/background01.jpg","dark":"/images/background02.jpg"},"title":"朋友，欢迎你的到来","subtitle":{"text":["looding...."],"hitokoto":{"enable":true,"show_author":true,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"style":"default","links":{"github":"https://github.com/YQYStudio","instagram":null,"zhihu":null,"twitter":null,"email":"34756019@qq.com"},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":"猜你喜欢","artist":"随机","url":"https://api.cenguigui.cn/api/netease?&type=mp3","cover":"https://api.cenguigui.cn/api/netease?&type=img","lrc":null}]},"mermaid":{"enable":true,"version":"11.4.1"}},"version":"2.8.5","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"随笔":{"icon":"fa-solid fa-pen-nib","path":"/essays/"},"友情链接":{"icon":"fa-solid fa-link","path":"/links/"},"标签":{"icon":"fa-solid fa-tags","path":"/tags/"},"相册":{"icon":"fa-solid fa-image","path":"/masonry/"},"类别":{"icon":"fa-solid fa-folder","path":"/categories/"},"工具":{"icon":"fa-solid fa-bars","submenus":{"代码调试":"/runhtml","本地播放器":"/publicvideo"}}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":"资源仅做学习使用，请于24小时内删除。如有侵权，请联系我删除（本站评论功能需要有GIthub账号）","show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2025/1/31 11:45:14"};
-    window.lang_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
-    window.data = {"masonry":true};
-  </script>
-    
-    <!--- Fontawesome Part-->
-    
-<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
-
-    
-<link rel="stylesheet" href="/fontawesome/brands.min.css">
-
-    
-<link rel="stylesheet" href="/fontawesome/solid.min.css">
-
-    
-<link rel="stylesheet" href="/fontawesome/regular.min.css">
-
-    
-    
-    
-    
-<meta name="generator" content="Hexo 7.3.0"></head>
-
-
-
-<body>
-	<div class="progress-bar-container">
-	
-	<span class="scroll-progress-bar"></span>
-	
-
-	
-	<span class="pjax-progress-bar"></span>
-	<!--        <span class="swup-progress-icon">-->
-	<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
-	<!--        </span>-->
-	
-</div>
-
-<main class="page-container" id="swup">
-
-	
-
-	<div class="main-content-container flex flex-col justify-between min-h-dvh">
-		<div class="main-content-header">
-			<header class="navbar-container px-6 md:px-12">
-    <div class="navbar-content transition-navbar ">
-        <div class="left">
-            
-                <a class="logo-image h-8 w-8 sm:w-10 sm:h-10 mr-3" href="/">
-                    <img src="/images/moon.svg" class="w-full h-full rounded-xs">
-                </a>
-            
-            <a class="logo-title" href="/">
-                
-                YQYStudio
-                
-            </a>
-        </div>
-
-        <div class="right">
-            <!-- PC -->
-            <div class="desktop">
-                <ul class="navbar-list">
-                    
-                        
-                            
-
-                            <li class="navbar-item">
-                                <!-- Menu -->
-                                <a class=""
-                                   href="/"
-                                        >
-                                    <i class="fa-regular fa-house fa-fw"></i>
-                                    首页
-                                    
-                                </a>
-
-                                <!-- Submenu -->
-                                
-                            </li>
-                    
-                        
-                            
-
-                            <li class="navbar-item">
-                                <!-- Menu -->
-                                <a class=""
-                                   href="/essays/"
-                                        >
-                                    <i class="fa-solid fa-pen-nib fa-fw"></i>
-                                    随笔
-                                    
-                                </a>
-
-                                <!-- Submenu -->
-                                
-                            </li>
-                    
-                        
-                            
-
-                            <li class="navbar-item">
-                                <!-- Menu -->
-                                <a class=""
-                                   href="/links/"
-                                        >
-                                    <i class="fa-solid fa-link fa-fw"></i>
-                                    友情链接
-                                    
-                                </a>
-
-                                <!-- Submenu -->
-                                
-                            </li>
-                    
-                        
-                            
-
-                            <li class="navbar-item">
-                                <!-- Menu -->
-                                <a class=""
-                                   href="/tags/"
-                                        >
-                                    <i class="fa-solid fa-tags fa-fw"></i>
-                                    标签
-                                    
-                                </a>
-
-                                <!-- Submenu -->
-                                
-                            </li>
-                    
-                        
-                            
-
-                            <li class="navbar-item">
-                                <!-- Menu -->
-                                <a class=""
-                                   href="/masonry/"
-                                        >
-                                    <i class="fa-solid fa-image fa-fw"></i>
-                                    相册
-                                    
-                                </a>
-
-                                <!-- Submenu -->
-                                
-                            </li>
-                    
-                        
-                            
-
-                            <li class="navbar-item">
-                                <!-- Menu -->
-                                <a class=""
-                                   href="/categories/"
-                                        >
-                                    <i class="fa-solid fa-folder fa-fw"></i>
-                                    类别
-                                    
-                                </a>
-
-                                <!-- Submenu -->
-                                
-                            </li>
-                    
-                        
-                            
-
-                            <li class="navbar-item">
-                                <!-- Menu -->
-                                <a class="has-dropdown"
-                                   href="#"
-                                        onClick=&#34;return false;&#34;>
-                                    <i class="fa-solid fa-bars fa-fw"></i>
-                                    工具
-                                    <i class="fa-solid fa-chevron-down fa-fw"></i>
-                                </a>
-
-                                <!-- Submenu -->
-                                
-                                    <ul class="sub-menu">
-                                        
-                                            <li>
-                                                <a href="/runhtml">
-                                                    代码调试
-                                                </a>
-                                            </li>
-                                        
-                                            <li>
-                                                <a href="/publicvideo">
-                                                    本地播放器
-                                                </a>
-                                            </li>
-                                        
-                                    </ul>
-                                
-                            </li>
-                    
-                    
-                        <li class="navbar-item search search-popup-trigger">
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                        </li>
-                    
-                </ul>
-            </div>
-            <!-- Mobile -->
-            <div class="mobile">
-                
-                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i>
-                    </div>
-                
-                <div class="icon-item navbar-bar">
-                    <div class="navbar-bar-middle"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Mobile sheet -->
-    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
-        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
-            
-                
-                    
-
-                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
-                        
-                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
-                           href="/"
-                        >
-                            <span>
-                                首页
-                            </span>
-                            
-                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
-                            
-                        </a>
-                        
-
-                        
-                    </li>
-            
-                
-                    
-
-                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
-                        
-                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
-                           href="/essays/"
-                        >
-                            <span>
-                                随笔
-                            </span>
-                            
-                                <i class="fa-solid fa-pen-nib fa-sm fa-fw"></i>
-                            
-                        </a>
-                        
-
-                        
-                    </li>
-            
-                
-                    
-
-                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
-                        
-                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
-                           href="/links/"
-                        >
-                            <span>
-                                友情链接
-                            </span>
-                            
-                                <i class="fa-solid fa-link fa-sm fa-fw"></i>
-                            
-                        </a>
-                        
-
-                        
-                    </li>
-            
-                
-                    
-
-                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
-                        
-                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
-                           href="/tags/"
-                        >
-                            <span>
-                                标签
-                            </span>
-                            
-                                <i class="fa-solid fa-tags fa-sm fa-fw"></i>
-                            
-                        </a>
-                        
-
-                        
-                    </li>
-            
-                
-                    
-
-                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
-                        
-                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
-                           href="/masonry/"
-                        >
-                            <span>
-                                相册
-                            </span>
-                            
-                                <i class="fa-solid fa-image fa-sm fa-fw"></i>
-                            
-                        </a>
-                        
-
-                        
-                    </li>
-            
-                
-                    
-
-                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
-                        
-                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
-                           href="/categories/"
-                        >
-                            <span>
-                                类别
-                            </span>
-                            
-                                <i class="fa-solid fa-folder fa-sm fa-fw"></i>
-                            
-                        </a>
-                        
-
-                        
-                    </li>
-            
-                
-                    
-
-                    <li class="drawer-navbar-item-sub text-base my-1.5 flex flex-col w-full">
-                        
-                        <div class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary cursor-pointer text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
-                             navbar-data-toggle="submenu-工具"
-                        >
-                            <span>
-                                工具
-                            </span>
-                            
-                                <i class="fa-solid fa-chevron-right fa-sm fa-fw transition-all"></i>
-                            
-                        </div>
-                        
-
-                        
-                            <div class="flex-col items-start px-2 py-2 hidden" data-target="submenu-工具">
-                                
-                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
-                                        <a class=" text-third-text-color text-xl"
-                                           href="/runhtml">代码调试</a>
-                                    </div>
-                                
-                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
-                                        <a class=" text-third-text-color text-xl"
-                                           href="/publicvideo">本地播放器</a>
-                                    </div>
-                                
-                            </div>
-                        
-                    </li>
-            
-
-            
-            
-        </ul>
-
-        <div class="statistics flex justify-around my-2.5">
-    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">9</div>
-        <div class="label text-third-text-color text-sm">标签</div>
-    </a>
-    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">6</div>
-        <div class="label text-third-text-color text-sm">分类</div>
-    </a>
-    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">13</div>
-        <div class="label text-third-text-color text-sm">文章</div>
-    </a>
-</div>
-    </div>
-
-    <div class="window-mask"></div>
-
-</header>
-
-
-		</div>
-
-		<div class="main-content-body transition-fade-up">
-			
-
-			<div class="main-content">
-				<div class="page-template-container">
-	
-
-	
-
-	<div class="page-template-content markdown-body">
-		
-		<h1></h1>
-		
-
-		<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>在线HTML代码调试器</title>
+<div id="html-debugger-container">
+    <!-- 外部依赖的CSS -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/codemirror.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/theme/monokai.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/theme/default.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/addon/hint/show-hint.min.css">
+
+    <!-- 组件的独立样式 -->
     <style>
-        body {
+        /* 将所有样式限定在 #html-debugger-container 内部，避免与博客主题冲突 */
+        #html-debugger-container {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background: linear-gradient(135deg, #1e3a8a, #3b82f6);
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 2rem 0;
             color: #f3f4f6;
             transition: background 0.5s ease, color 0.5s ease;
         }
-        body.light {
+        #html-debugger-container.light {
             background: linear-gradient(135deg, #fefcbf, #fed7aa);
             color: #1f2937;
         }
-        .CodeMirror {
-            height: 70vh; /* Increased height for better view */
+        #html-debugger-container .CodeMirror {
+            height: 70vh;
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             font-size: 15px;
         }
-        .CodeMirror:focus-within {
+        #html-debugger-container .CodeMirror:focus-within {
             transform: scale(1.01);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
         }
-        .CodeMirror-scroll {
-            overflow: auto !important;
-        }
-        .CodeMirror ::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
-        }
-        .CodeMirror ::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 10px;
-        }
-        .CodeMirror ::-webkit-scrollbar-thumb:hover {
-            background: rgba(255, 255, 255, 0.5);
-        }
-        .CodeMirror ::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        body.light .CodeMirror ::-webkit-scrollbar-thumb {
-            background: rgba(0, 0, 0, 0.3);
-        }
-        body.light .CodeMirror ::-webkit-scrollbar-thumb:hover {
-            background: rgba(0, 0, 0, 0.5);
-        }
-        #preview {
+        #html-debugger-container .CodeMirror-scroll { overflow: auto !important; }
+        #html-debugger-container .CodeMirror ::-webkit-scrollbar { width: 6px; height: 6px; }
+        #html-debugger-container .CodeMirror ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.3); border-radius: 10px; }
+        #html-debugger-container .CodeMirror ::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.5); }
+        #html-debugger-container .CodeMirror ::-webkit-scrollbar-track { background: transparent; }
+        #html-debugger-container.light .CodeMirror ::-webkit-scrollbar-thumb { background: rgba(0, 0, 0, 0.3); }
+        #html-debugger-container.light .CodeMirror ::-webkit-scrollbar-thumb:hover { background: rgba(0, 0, 0, 0.5); }
+        #html-debugger-container #preview {
             width: 100%;
-            height: 70vh; /* Increased height for better view */
+            height: 70vh;
             border: none;
             background: white;
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s ease;
         }
-        #preview:hover {
-            transform: scale(1.01);
-        }
-        #runButton, #clearButton, #themeToggle, #maximizePreview, #togglePreview {
+        #html-debugger-container #preview:hover { transform: scale(1.01); }
+        #html-debugger-container #runButton, #html-debugger-container #clearButton, #html-debugger-container #themeToggle, #html-debugger-container #maximizePreview, #html-debugger-container #togglePreview {
             transition: transform 0.2s ease, background-color 0.3s ease;
         }
-        #runButton:hover, #clearButton:hover, #themeToggle:hover, #maximizePreview:hover, #togglePreview:hover {
+        #html-debugger-container #runButton:hover, #html-debugger-container #clearButton:hover, #html-debugger-container #themeToggle:hover, #html-debugger-container #maximizePreview:hover, #html-debugger-container #togglePreview:hover {
             transform: translateY(-2px);
         }
-        #errorLog {
+        #html-debugger-container #errorLog {
             color: #f87171;
             font-size: 14px;
             max-height: 80px;
@@ -702,88 +69,39 @@
             margin-top: 10px;
             display: none;
         }
-        #errorLog:not(:empty) {
-            display: block;
-            background: #1e293b;
-            padding: 10px;
-        }
-        body.light #errorLog:not(:empty) {
-            background: #f3f4f6;
-            color: #dc2626;
-        }
-        .navbar {
+        #html-debugger-container #errorLog:not(:empty) { display: block; background: #1e293b; padding: 10px; }
+        #html-debugger-container.light #errorLog:not(:empty) { background: #f3f4f6; color: #dc2626; }
+        #html-debugger-container .navbar {
             background: rgba(17, 24, 39, 0.95);
             backdrop-filter: blur(10px);
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
             transition: background 0.5s ease;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        body.light .navbar {
-            background: rgba(255, 255, 255, 0.95);
-            color: #1f2937;
+        #html-debugger-container.light .navbar { background: rgba(255, 255, 255, 0.95); color: #1f2937; }
+        #html-debugger-container .modal {
+            display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.5); padding-top: 60px;
         }
-        .animate-pulse-slow {
-            animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        #html-debugger-container .modal-content {
+            background-color: #fefefe; margin: 5% auto; padding: 20px; border: 1px solid #888; width: 80%; height: 80vh; border-radius: 8px; position: relative;
         }
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
-        }
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.5);
-            padding-top: 60px;
-        }
-        .modal-content {
-            background-color: #fefefe;
-            margin: 5% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            height: 80vh;
-            border-radius: 8px;
-            position: relative;
-        }
-        .modal-content.fullscreen {
-            margin: 0;
-            width: 100vw;
-            height: 100vh;
-            border: none;
-            border-radius: 0;
-        }
-        .close, .fullscreen-btn {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-            margin-left: 10px;
-        }
-        .close:hover, .close:focus, .fullscreen-btn:hover, .fullscreen-btn:focus {
-            color: black;
-            text-decoration: none;
-        }
-        #modalPreview {
-            width: 100%;
-            height: calc(100% - 40px);
-            border: none;
-        }
+        #html-debugger-container .modal-content.fullscreen { margin: 0; width: 100vw; height: 100vh; border: none; border-radius: 0; }
+        #html-debugger-container .close, #html-debugger-container .fullscreen-btn { color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer; margin-left: 10px; }
+        #html-debugger-container .close:hover, #html-debugger-container .close:focus, #html-debugger-container .fullscreen-btn:hover, #html-debugger-container .fullscreen-btn:focus { color: black; text-decoration: none; }
+        #html-debugger-container #modalPreview { width: 100%; height: calc(100% - 40px); border: none; }
     </style>
-</head>
-<body class="flex flex-col h-screen">
-    <div class="navbar p-4 flex justify-between items-center">
+
+    <!-- 组件的HTML结构 -->
+    <div class="navbar">
         <h1 class="text-2xl font-bold animate__animated animate__fadeInDown">在线HTML代码调试器</h1>
         <div class="space-x-3">
             <button id="runButton" class="bg-blue-500 hover:bg-blue-600 text-white px-5 py-2 rounded-lg shadow-md animate__animated animate__fadeInRight">运行</button>
             <button id="togglePreview" class="bg-indigo-500 hover:bg-indigo-600 text-white px-5 py-2 rounded-lg shadow-md animate__animated animate__fadeInRight">显示预览</button>
             <button id="clearButton" class="bg-gray-600 hover:bg-gray-700 text-white px-5 py-2 rounded-lg shadow-md animate__animated animate__fadeInRight">清空</button>
-            <button id="themeToggle" class="bg-purple-500 hover:bg-purple-600 text-white px-5 py-2 rounded-lg shadow-md animate__animated animate__fadeInRight">切换主题</button>
+            <button id="themeToggle" class="bg-purple-500 hover:bg-purple-600 text-white px-5 py-2 rounded-lg shadow-md animate__animated animate__fadeInRight">浅色主题</button>
             <button id="maximizePreview" class="bg-green-500 hover:bg-green-600 text-white px-5 py-2 rounded-lg shadow-md animate__animated animate__fadeInRight">最大化预览</button>
         </div>
     </div>
@@ -795,7 +113,7 @@
         <div class="w-1/2 preview-container hidden">
             <h2 class="text-lg font-semibold mb-3 animate__animated animate__fadeInRight">预览区</h2>
             <iframe id="preview" class="w-full animate__animated animate__fadeInUp"></iframe>
-            <div id="errorLog" class="animate-pulse-slow"></div>
+            <div id="errorLog"></div>
         </div>
     </div>
     <div id="previewModal" class="modal">
@@ -805,6 +123,8 @@
             <iframe id="modalPreview"></iframe>
         </div>
     </div>
+
+    <!-- 外部依赖的JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/codemirror.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/mode/xml/xml.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/mode/javascript/javascript.min.js"></script>
@@ -815,27 +135,35 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/addon/hint/html-hint.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/addon/hint/css-hint.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/addon/hint/javascript-hint.min.js"></script>
+    
+    <!-- 组件的核心逻辑 -->
     <script>
-        const editorElement = document.getElementById('editor');
-        const preview = document.getElementById('preview');
-        const modal = document.getElementById('previewModal');
-        const modalPreview = document.getElementById('modalPreview');
+    // 使用 IIFE (立即调用函数表达式) 来创建独立作用域，防止变量污染
+    (function() {
+        // 将所有DOM选择器限制在组件容器内部
+        const container = document.getElementById('html-debugger-container');
+        if (!container) return; // 如果容器不存在，则不执行任何操作
+
+        const editorElement = container.querySelector('#editor');
+        const preview = container.querySelector('#preview');
+        const modal = container.querySelector('#previewModal');
+        const modalPreview = container.querySelector('#modalPreview');
         const modalContent = modal.querySelector('.modal-content');
         const closeBtn = modal.querySelector('.close');
         const fullscreenBtn = modal.querySelector('.fullscreen-btn');
-        const errorLog = document.getElementById('errorLog');
-        const runButton = document.getElementById('runButton');
-        const clearButton = document.getElementById('clearButton');
-        const themeToggle = document.getElementById('themeToggle');
-        const maximizePreview = document.getElementById('maximizePreview');
-        const togglePreviewButton = document.getElementById('togglePreview');
-        const editorContainer = document.querySelector('.editor-container');
-        const previewContainer = document.querySelector('.preview-container');
-        const navbar = document.querySelector('.navbar');
-        const body = document.body;
+        const errorLog = container.querySelector('#errorLog');
+        const runButton = container.querySelector('#runButton');
+        const clearButton = container.querySelector('#clearButton');
+        const themeToggle = container.querySelector('#themeToggle');
+        const maximizePreview = container.querySelector('#maximizePreview');
+        const togglePreviewButton = container.querySelector('#togglePreview');
+        const editorContainer = container.querySelector('.editor-container');
+        const previewContainer = container.querySelector('.preview-container');
+        const navbar = container.querySelector('.navbar');
+
         let isDarkTheme = true;
         let isModalFullscreen = false;
-        let isPreviewVisible = false; // Initial state: preview is hidden
+        let isPreviewVisible = false;
 
         const cm = CodeMirror(editorElement, {
             mode: 'htmlmixed',
@@ -866,7 +194,7 @@
         });
 
         function updatePreview() {
-            if (!isPreviewVisible) return; // Don't update if preview is hidden
+            if (!isPreviewVisible) return;
             const code = cm.getValue();
             errorLog.textContent = '';
             try {
@@ -876,8 +204,6 @@
                 doc.close();
             } catch (error) {
                 errorLog.textContent = '错误: ' + error.message;
-                errorLog.classList.add('animate__animated', 'animate__shakeX');
-                setTimeout(() => errorLog.classList.remove('animate__animated', 'animate__shakeX'), 1000);
             }
         }
 
@@ -889,46 +215,33 @@
                 doc.write(code);
                 doc.close();
             } catch (error) {
-                // Can add error handling in modal if needed
+                console.error("Modal preview error:", error);
             }
         }
-        
-        // --- NEW FEATURE: Toggle Preview ---
+
         togglePreviewButton.addEventListener('click', () => {
             isPreviewVisible = !isPreviewVisible;
             if (isPreviewVisible) {
-                // Show preview
                 previewContainer.classList.remove('hidden');
                 editorContainer.classList.remove('w-full');
                 editorContainer.classList.add('w-1/2');
                 togglePreviewButton.textContent = '隐藏预览';
                 updatePreview();
             } else {
-                // Hide preview
                 previewContainer.classList.add('hidden');
                 editorContainer.classList.remove('w-1/2');
                 editorContainer.classList.add('w-full');
                 togglePreviewButton.textContent = '显示预览';
             }
-            
-            // Refresh CodeMirror after a short delay to allow layout to update
-            setTimeout(() => {
-                cm.refresh();
-            }, 10);
-
-            togglePreviewButton.classList.add('animate__animated', 'animate__pulse');
-            setTimeout(() => togglePreviewButton.classList.remove('animate__animated', 'animate__pulse'), 500);
+            setTimeout(() => cm.refresh(), 10);
         });
 
         runButton.addEventListener('click', () => {
             if (!isPreviewVisible) {
-                // If preview is hidden, show it first then run
                 togglePreviewButton.click();
             } else {
                 updatePreview();
             }
-            runButton.classList.add('animate__animated', 'animate__pulse');
-            setTimeout(() => runButton.classList.remove('animate__animated', 'animate__pulse'), 500);
         });
 
         cm.on('change', updatePreview);
@@ -939,32 +252,23 @@
                 preview.srcdoc = '';
             }
             errorLog.textContent = '';
-            clearButton.classList.add('animate__animated', 'animate__pulse');
-            setTimeout(() => clearButton.classList.remove('animate__animated', 'animate__pulse'), 500);
         });
 
         themeToggle.addEventListener('click', () => {
             isDarkTheme = !isDarkTheme;
-            body.classList.toggle('light');
-            navbar.classList.toggle('light');
+            container.classList.toggle('light');
             cm.setOption('theme', isDarkTheme ? 'monokai' : 'default');
-            themeToggle.textContent = isDarkTheme ? '切换主题' : '深色主题';
+            themeToggle.textContent = isDarkTheme ? '浅色主题' : '深色主题';
             
-            // Simplified text color handling for buttons
-            document.querySelectorAll('.navbar button').forEach(button => {
+            container.querySelectorAll('.navbar button').forEach(button => {
                 button.classList.toggle('text-white', isDarkTheme);
                 button.classList.toggle('text-black', !isDarkTheme);
             });
-            
-            themeToggle.classList.add('animate__animated', 'animate__pulse');
-            setTimeout(() => themeToggle.classList.remove('animate__animated', 'animate__pulse'), 500);
         });
 
         maximizePreview.addEventListener('click', () => {
             modal.style.display = "block";
             updateModalPreview();
-            maximizePreview.classList.add('animate__animated', 'animate__pulse');
-            setTimeout(() => maximizePreview.classList.remove('animate__animated', 'animate__pulse'), 500);
         });
 
         closeBtn.addEventListener('click', () => {
@@ -993,314 +297,6 @@
                 isModalFullscreen = false;
             }
         });
-
-        // No initial call to updatePreview(), as it is hidden by default.
+    })();
     </script>
-</body>
-</html>
-	</div>
-
-	<div class="page-template-comments">
-		
-	</div>
 </div>
-
-<div class="paginator">
-	
-</div>
-  
-			</div>
-
-			
-		</div>
-
-		<div class="main-content-footer">
-			<footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
-    <div class="info-container py-3 text-center">
-        
-            <div class="customize-info my-1">每一次遇见，都是千载难逢的幸运，每一次交流，都是前世今生的缘分，愿您，平安喜乐，事事皆顺...</div>
-        
-        <div class="text-center">
-            &copy;
-            
-              <span>2025</span>
-              -
-            
-            2025&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">YQYStudio(一个为人民服务的公仆)</a>
-            
-                
-                <p class="post-count space-x-0.5">
-                    <span>
-                        共撰写了 13 篇文章
-                    </span>
-                    
-                        <span>
-                            共 6.4k 字
-                        </span>
-                    
-                </p>
-            
-        </div>
-        
-            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
-            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
-                
-                    <span id="busuanzi_container_site_uv" class="lg:!block">
-                        <span class="text-sm">访问人数</span>
-                        <span id="busuanzi_value_site_uv"></span>
-                    </span>
-                
-                
-                    <span id="busuanzi_container_site_pv" class="lg:!block">
-                        <span class="text-sm">总访问量</span>
-                        <span id="busuanzi_value_site_pv"></span>
-                    </span>
-                
-            </div>
-        
-        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
-            <span class="lg:block text-sm">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a> 驱动</span>
-            <span class="text-sm lg:block">主题&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.5</a></span>
-        </div>
-        
-        
-            <div>
-                博客已运行 <span class="odometer" id="runtime_days" ></span> 天 <span class="odometer" id="runtime_hours"></span> 小时 <span class="odometer" id="runtime_minutes"></span> 分钟 <span class="odometer" id="runtime_seconds"></span> 秒
-            </div>
-        
-        
-            <script data-swup-reload-script>
-                try {
-                    function odometer_init() {
-                    const elements = document.querySelectorAll('.odometer');
-                    elements.forEach(el => {
-                        new Odometer({
-                            el,
-                            format: '( ddd).dd',
-                            duration: 200
-                        });
-                    });
-                    }
-                    odometer_init();
-                } catch (error) {}
-            </script>
-        
-        
-        
-    </div>  
-</footer>
-		</div>
-	</div>
-
-	
-
-	<div class="right-side-tools-container">
-		<div class="side-tools-container">
-	<ul class="hidden-tools-list">
-		<li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
-			<i class="fa-regular fa-magnifying-glass-plus"></i>
-		</li>
-
-		<li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
-			<i class="fa-regular fa-magnifying-glass-minus"></i>
-		</li>
-
-		<li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
-			<i class="fa-regular fa-moon"></i>
-		</li>
-
-		<!-- rss -->
-		
-
-		
-
-		<li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
-			<i class="fa-regular fa-arrow-down"></i>
-		</li>
-	</ul>
-
-	<ul class="visible-tools-list">
-		<li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
-			<i class="fa-regular fa-cog fa-spin"></i>
-		</li>
-		
-		<li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
-			<i class="arrow-up fas fa-arrow-up"></i>
-			<span class="percent"></span>
-		</li>
-		
-		
-	</ul>
-</div>
-	</div>
-
-	<div class="image-viewer-container">
-	<img src="">
-</div>
-
-	
-	<div class="search-pop-overlay">
-	<div class="popup search-popup">
-		<div class="search-header">
-			<span class="search-input-field-pre">
-				<i class="fa-solid fa-keyboard"></i>
-			</span>
-			<div class="search-input-container">
-				<input autocomplete="off" autocorrect="off" autocapitalize="off" placeholder="站内搜索您需要的内容..." spellcheck="false" type="search" class="search-input">
-			</div>
-			<span class="popup-btn-close">
-				<i class="fa-solid fa-times"></i>
-			</span>
-		</div>
-		<div id="search-result">
-			<div id="no-result">
-				<i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
-			</div>
-		</div>
-	</div>
-</div>
-	
-
-</main>
-
-
-
-<script src="/js/build/libs/Swup.min.js"></script>
-
-<script src="/js/build/libs/SwupSlideTheme.min.js"></script>
-
-<script src="/js/build/libs/SwupScriptsPlugin.min.js"></script>
-
-<script src="/js/build/libs/SwupProgressPlugin.min.js"></script>
-
-<script src="/js/build/libs/SwupScrollPlugin.min.js"></script>
-
-<script src="/js/build/libs/SwupPreloadPlugin.min.js"></script>
-
-<script>
-    const swup = new Swup({
-        plugins: [
-            new SwupScriptsPlugin({
-                optin: true,
-            }),
-            new SwupProgressPlugin(),
-            new SwupScrollPlugin({
-                offset: 80,
-            }),
-            new SwupSlideTheme({
-                mainElement: ".main-content-body",
-            }),
-            new SwupPreloadPlugin(),
-        ],
-        containers: ["#swup"],
-    });
-</script>
-
-
-
-	
-<script src="/js/build/tools/imageViewer.js" type="module"></script>
-
-<script src="/js/build/utils.js" type="module"></script>
-
-<script src="/js/build/main.js" type="module"></script>
-
-<script src="/js/build/layouts/navbarShrink.js" type="module"></script>
-
-<script src="/js/build/tools/scrollTopBottom.js" type="module"></script>
-
-<script src="/js/build/tools/lightDarkSwitch.js" type="module"></script>
-
-<script src="/js/build/layouts/categoryList.js" type="module"></script>
-
-
-
-    
-<script src="/js/build/tools/localSearch.js" type="module"></script>
-
-
-
-
-    
-<script src="/js/build/tools/codeBlock.js" type="module"></script>
-
-
-
-
-    
-<script src="/js/build/layouts/lazyload.js" type="module"></script>
-
-
-
-
-    
-<script src="/js/build/tools/runtime.js"></script>
-
-    
-<script src="/js/build/libs/odometer.min.js"></script>
-
-    
-<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
-
-
-
-
-  
-<script src="/js/build/libs/Typed.min.js"></script>
-
-  
-<script src="/js/build/plugins/typed.js" type="module"></script>
-
-
-
-
-    
-        
-<script src="/js/build/libs/mermaid.min.js"></script>
-
-    
-    
-<script src="/js/build/plugins/mermaid.js"></script>
-
-
-
-
-    
-<script src="/js/build/libs/minimasonry.min.js"></script>
-
-    
-<script src="/js/build/plugins/masonry.js" type="module"></script>
-
-
-
-
-    
-<script src="/js/build/libs/anime.min.js"></script>
-
-
-
-
-
-    
-<script src="/js/build/tools/tocToggle.js" type="module" data-swup-reload-script=""></script>
-
-<script src="/js/build/layouts/toc.js" type="module" data-swup-reload-script=""></script>
-
-<script src="/js/build/plugins/tabs.js" type="module" data-swup-reload-script=""></script>
-
-
-
-
-<script src="/js/build/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
-
-
-<script src="/js/build/layouts/essays.js" type="module" data-swup-reload-script=""></script>
-
-
-
-
-
-	
-</body>
-
-</html>
