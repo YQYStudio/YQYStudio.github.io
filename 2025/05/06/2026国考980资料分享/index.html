@@ -6,6 +6,116 @@
     <meta name="keywords" content="Hexo Theme Redefine">
     
     <meta name="author" content="YQYStudio(一个为人民服务的公仆)">
+    
+    <!-- Completely eliminate flash of wrong theme -->
+    <script>
+        (function() {
+            const THEME_KEY = "REDEFINE-THEME-STATUS";
+            const DARK = "dark", LIGHT = "light";
+            
+            // Get preferred theme
+            function getTheme() {
+                try {
+                    const saved = localStorage.getItem(THEME_KEY);
+                    if (saved) {
+                        const { isDark } = JSON.parse(saved);
+                        return isDark ? DARK : LIGHT;
+                    }
+                } catch (e) {}
+                
+                return matchMedia("(prefers-color-scheme: dark)").matches ? DARK : LIGHT;
+            }
+            
+            // Apply theme to document
+            function applyTheme(theme) {
+                const isDark = theme === DARK;
+                const root = document.documentElement;
+                
+                // Set data attribute for CSS variables
+                root.setAttribute("data-theme", theme);
+                
+                // Set classes for compatibility
+                root.classList.add(theme);
+                root.classList.remove(isDark ? LIGHT : DARK);
+                root.style.colorScheme = theme;
+            }
+            
+            // Initial application
+            const theme = getTheme();
+            applyTheme(theme);
+            
+            // Listen for system preference changes
+            matchMedia("(prefers-color-scheme: dark)").addEventListener("change", ({ matches }) => {
+                // Only update if using system preference (no localStorage entry)
+                if (!localStorage.getItem(THEME_KEY)) {
+                    applyTheme(matches ? DARK : LIGHT);
+                }
+            });
+            
+            // Set body classes once DOM is ready
+            if (document.readyState !== "loading") {
+                document.body.classList.add(theme + "-mode");
+            } else {
+                document.addEventListener("DOMContentLoaded", () => {
+                    document.body.classList.add(theme + "-mode");
+                    document.body.classList.remove((theme === DARK ? LIGHT : DARK) + "-mode");
+                });
+            }
+        })();
+    </script>
+    
+    <!-- Critical CSS to prevent flash -->
+    <style>
+        :root[data-theme="dark"] {
+            --background-color: #202124;
+            --background-color-transparent: rgba(32, 33, 36, 0.6);
+            --second-background-color: #2d2e32;
+            --third-background-color: #34353a;
+            --third-background-color-transparent: rgba(32, 33, 36, 0.6);
+            --primary-color: #0066CC;
+            --first-text-color: #ffffff;
+            --second-text-color: #eeeeee;
+            --third-text-color: #bebec6;
+            --fourth-text-color: #999999;
+            --default-text-color: #bebec6;
+            --invert-text-color: #373D3F;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --selection-color: #0066CC;
+            --shadow-color-1: rgba(255, 255, 255, 0.08);
+            --shadow-color-2: rgba(255, 255, 255, 0.05);
+        }
+        
+        :root[data-theme="light"] {
+            --background-color: #fff;
+            --background-color-transparent: rgba(255, 255, 255, 0.6);
+            --second-background-color: #f8f8f8;
+            --third-background-color: #f2f2f2;
+            --third-background-color-transparent: rgba(241, 241, 241, 0.6);
+            --primary-color: #0066CC;
+            --first-text-color: #16171a;
+            --second-text-color: #2f3037;
+            --third-text-color: #5e5e5e;
+            --fourth-text-color: #eeeeee;
+            --default-text-color: #373D3F;
+            --invert-text-color: #bebec6;
+            --border-color: rgba(0, 0, 0, 0.08);
+            --selection-color: #0066CC;
+            --shadow-color-1: rgba(0, 0, 0, 0.08);
+            --shadow-color-2: rgba(0, 0, 0, 0.05);
+        }
+        
+        body {
+            background-color: var(--background-color);
+            color: var(--default-text-color);
+        }
+        
+        /* Apply body classes as soon as DOM is ready */
+        :root[data-theme="dark"] body {
+            background-color: var(--background-color);
+            color: var(--default-text-color);
+        }
+    </style>
+    
     <!-- preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -83,7 +193,7 @@
 
     <script id="hexo-configurations">
     window.config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.xml"};
-    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":["初窥门径","略有小成","融会贯通","炉火纯青"," 登峰造极","返璞归真","万象归真"]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"pangu_js":false,"recommendation":{"enable":true,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":true},"scroll_progress":{"bar":true,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"open_graph":{"enable":true,"image":"/images/redefine-og.webp","description":"Hexo Theme Redefine, Redefine Your Hexo Journey."},"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/background01.jpg","dark":"/images/background02.jpg"},"title":"朋友，欢迎你的到来","subtitle":{"text":["looding...."],"hitokoto":{"enable":true,"show_author":true,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"style":"default","links":{"github":"https://github.com/YQYStudio","instagram":null,"zhihu":null,"twitter":null,"email":"34756019@qq.com"},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":true,"type":"fixed","audios":[{"name":"猜你喜欢","artist":"随机","url":"https://api.cenguigui.cn/api/netease?&type=mp3","cover":"https://api.cenguigui.cn/api/netease?&type=img","lrc":null}]},"mermaid":{"enable":true,"version":"11.4.1"}},"version":"2.8.2","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"随笔":{"icon":"fa-solid fa-pen-nib","path":"/essays/"},"友情链接":{"icon":"fa-solid fa-link","path":"/links/"},"标签":{"icon":"fa-solid fa-tags","path":"/tags/"},"相册":{"icon":"fa-solid fa-image","path":"/masonry/"},"类别":{"icon":"fa-solid fa-folder","path":"/categories/"},"工具":{"icon":"fa-solid fa-bars","submenus":{"代码调试":"/runhtml","本地播放器":"/publicvideo"}}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":"资源仅做学习使用，请于24小时内删除。如有侵权，请联系我删除（本站评论功能需要有GIthub账号）","show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2025/1/31 11:45:14"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":["初窥门径","略有小成","融会贯通","炉火纯青"," 登峰造极","返璞归真","万象归真"]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"pangu_js":false,"recommendation":{"enable":true,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":true},"scroll_progress":{"bar":true,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"side_tools":{"gear_rotation":true,"auto_expand":false},"open_graph":{"enable":true,"image":"/images/redefine-og.webp","description":"Hexo Theme Redefine, Redefine Your Hexo Journey."},"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/background01.jpg","dark":"/images/background02.jpg"},"title":"朋友，欢迎你的到来","subtitle":{"text":["looding...."],"hitokoto":{"enable":true,"show_author":true,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"style":"default","links":{"github":"https://github.com/YQYStudio","instagram":null,"zhihu":null,"twitter":null,"email":"34756019@qq.com"},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":true,"type":"fixed","audios":[{"name":"猜你喜欢","artist":"随机","url":"https://api.cenguigui.cn/api/netease?&type=mp3","cover":"https://api.cenguigui.cn/api/netease?&type=img","lrc":null}]},"mermaid":{"enable":true,"version":"11.4.1"}},"version":"2.8.5","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"随笔":{"icon":"fa-solid fa-pen-nib","path":"/essays/"},"友情链接":{"icon":"fa-solid fa-link","path":"/links/"},"标签":{"icon":"fa-solid fa-tags","path":"/tags/"},"相册":{"icon":"fa-solid fa-image","path":"/masonry/"},"类别":{"icon":"fa-solid fa-folder","path":"/categories/"},"工具":{"icon":"fa-solid fa-bars","submenus":{"代码调试":"/runhtml","本地播放器":"/publicvideo"}}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":"资源仅做学习使用，请于24小时内删除。如有侵权，请联系我删除（本站评论功能需要有GIthub账号）","show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2025/1/31 11:45:14"};
     window.lang_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
     window.data = {"masonry":true};
   </script>
@@ -134,7 +244,7 @@
         <div class="left">
             
                 <a class="logo-image h-8 w-8 sm:w-10 sm:h-10 mr-3" href="/">
-                    <img src="/images/moon.svg" class="w-full h-full rounded-sm">
+                    <img src="/images/moon.svg" class="w-full h-full rounded-xs">
                 </a>
             
             <a class="logo-title" href="/">
@@ -597,7 +707,7 @@
 		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
 			
 <div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="密码错误。" data-whm="需要解密的内容无法被验证，但仍可以查看">
-  <script id="hbeData" type="hbeData" data-hmacdigest="107f6f3ed963b0d1f5cdd7aed5869ba7345fe0d47f9fc767ccbcd3a83f235d1d">2d4f6bb171c3b901992dfeccd92f2a25aad4778b6c3ed54bbfc16793fc0b59bbd6147be0b4d6fc96820d635ab3fdbb86817452ddaf7a183948a5f39c911d21d62cbc44459d69b89e760bc5e7cc9f11e6de578835fe778188a1074edca6f23f7d28b847f3cda3889f81d5c9cee83286cda8e09932971931ab44c8d8ccbdb4117c45d62a7017e2014c02768a6a30a62bded451a99be3c736c6341d77cef00529b973f2e952a4e620ee8a3d38e78cdb79ac746ff3b0830bce69132ef113c1216b50168721754099c342fb327d8ef65fc3f76f8c63c763dc6b6b7bb2ddc487d0123476eae4162a8ed1a4aecc0e3ac98222152ae2ea06a4456d665a629baafe02cb4654e373042c40394b24427a18cb6c99beeea4ab2d20ab98f01f0441993ebda5673e1e507a47df9ce84c46612819857bd3e527d7e2a5c7e912f86434aaf22661e3aada8d40f8ebae09563853ea328a5faa6805ab449e8400191c68d23fee4900bead7fa510c348b7dcbe7ea6d9fdf0709bbcdfb56b3c9e95959d03073e323c457532dc66ac38c514bbbe6f4202611a1edcb79ff0ba31388cb4aafb0250adc79529779db90c76504904eb7b9c9d8d840f0b12a09178c14c32afc0d0644cd136c2bb0cef859ad8abf7bd7692bc7921b146429182aa5feddced7332e9879a150f500177e1ef9871066b2c9e33546ce8aaf4917365f08c8f21a0a41c9f26da8c5c48dea3eeef4e4ec7d179f86cc136069a3be2e95a58e26064814b179286a62f91eddaf67cd0787305fa5e235adf1e44c30ff67b3606cb3562832c6637d12a30dd8720b52157760f7c91a51f13ef61096fa9f26106076c698d1d5a63df3b80f19a5172f61dff400b17d8bebace84b7a059f7039cc0148c3a787b372766eb69eddc34e63dc95b6d92eca1bdf36fb7ab57c5454a6f50b3630dae7055b711bf4c0102f88f02e09271c8b71468fe2cc40d44a4ec4dad11b9a9ba60891ab31efebb3f967865b64327cb02f139f6990f52b38add6bb5c1fd471617e5a1cf76ef47e8e90ee3019f72de9720630cc2a741d30238cfea75d5ffc27ceced5d4bcf2e26ffc45bf7433bdb77371c480970a0859c94cb25817a97a5ba520b704be06217f8cdcac5f358</script>
+  <script id="hbeData" type="hbeData" data-hmacdigest="e8e8d822da5353944fd52aa29b0659163531e3135f365a2fe2174f0f9be35f1e">2d4f6bb171c3b901992dfeccd92f2a25aad4778b6c3ed54bbfc16793fc0b59bbd6147be0b4d6fc96820d635ab3fdbb86817452ddaf7a183948a5f39c911d21d69783fd97e23fac3d95947cdfe3313013da26e50bc8ba85e932c950fc4f0ef6575f5d2f19b9993041e91c042ceb24279167becd4589dd8a129e8a568fbad95c1735e57143bd1e3419e7751a53073bdf42ce26250b3cc3d76192412f60294ec3d1fefb712346fee0969121962c7de9d987ff51465d2719a71f426ee4dadb65bce7d5f29b20fc77e21ab47d6ebc89af096658db82f9b41a94c0a237d1731f98a4dddde599a0678ead1e880f57e0c64c0cd80a82f0d6eda7815ff7ccadb0662b60450b7ca30d75f8efe130003e0232a0a353dca9f335acaa6366907021eb4fab6266841b7ed1aae58cce9b3fd77968ed86d1a0f1eb62d854c42c4a39e2b4195a986fade6e47f845a18b761fa4c71edfc5fe7e413e7247ad52a19f7003336756add79dbb8b862bfadc775d262c521912dd89d8c7a0a57c66b90bfe608eb6338d839cb446e8c0ee413d7f4fd2e31d23e10cba30a98cb09bfa39395907fafb1b1af7c110451edcabda678dc8bcf865a6be1b338d1e62f20e2daf8537faf152493a3a8f1840e7354d0500943246ecc4a7f833df3dfd389fbe4359163098458e1f5deb388e1be058fbca6e9b120a025a69351fb73e1f0f9b1829db16b08b97d8afeb7e241b098479084dcd1cc8ef870df4ddca7a7de90fe9d4a0bdd7f0a134a85e5e8efd2cd7f04bd16eed60007e55ae2893cde7dc73a348ea84fee564e3e218a252f2dc753b15a4a357428d5d4eb4d76f2d5cac61dcf96c0d481cfe8fbd1bb58c7d0a6dd0446ff3d43b3e2da2f3cd59b534e9d030bfccf28b11cd5f8c7f2411c55d5b90f59463f2f70a5b557e33787db78153890041cefcf5d0366b9baa981d306bcb7354ce292c6ae7385710c7dc326a01ec7fb4da9916409a947058a24a921cca460b60741d609fdc88e624bb844df55b6dd3b5e143e028ad3233d0f9423addf391d2195097524950a9869e3f31e33c6f32e612c025de0255eb1dfe58c5ee257fdee13</script>
   <div class="hbe hbe-content">
     <div class="hbe hbe-input hbe-input-default">
       <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
@@ -665,13 +775,13 @@ import {initHBE} from "/js/plugins/hbe.js";
     <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
      <i aria-hidden="true"></i><span>推荐阅读</span>
     </div>
-    <div class="recommended-article-group"><a class="recommended-article-item" href="/2025/01/31/1-31公考资料分享/" title="1.31公考资料分享" rel="bookmark">
+    <div class="recommended-article-group"><a class="recommended-article-item" href="/2025/01/31/1-31%E5%85%AC%E8%80%83%E8%B5%84%E6%96%99%E5%88%86%E4%BA%AB/" title="1.31公考资料分享" rel="bookmark">
   <img src="https://cdn.pixabay.com/photo/2025/01/20/20/11/shrine-9348003_1280.jpg" alt="1.31公考资料分享" class="!max-w-none">
   <span class="title">1.31公考资料分享</span>
-</a><a class="recommended-article-item" href="/2025/02/09/2-9公考资料分享/" title="2-9公考资料分享" rel="bookmark">
+</a><a class="recommended-article-item" href="/2025/02/09/2-9%E5%85%AC%E8%80%83%E8%B5%84%E6%96%99%E5%88%86%E4%BA%AB/" title="2-9公考资料分享" rel="bookmark">
   <img src="https://haowallpaper.com/link/common/file/previewFileImg/16360155533593984" alt="2-9公考资料分享" class="!max-w-none">
   <span class="title">2-9公考资料分享</span>
-</a><a class="recommended-article-item" href="/2025/02/02/24陕西省考申论自写/" title="仿人民日报写法" rel="bookmark">
+</a><a class="recommended-article-item" href="/2025/02/02/24%E9%99%95%E8%A5%BF%E7%9C%81%E8%80%83%E7%94%B3%E8%AE%BA%E8%87%AA%E5%86%99/" title="仿人民日报写法" rel="bookmark">
   <img src="https://haowallpaper.com/link/common/file/previewFileImg/15789130517090624" alt="仿人民日报写法" class="!max-w-none">
   <span class="title">仿人民日报写法</span>
 </a></div>
@@ -680,10 +790,10 @@ import {initHBE} from "/js/plugins/hbe.js";
    <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
      <i aria-hidden="true"></i><span>推荐阅读</span>
    </div>
-   <div class="recommended-article-group"><a class="recommended-article-item" href="/2025/01/31/1-31公考资料分享/" title="1.31公考资料分享" rel="bookmark">
+   <div class="recommended-article-group"><a class="recommended-article-item" href="/2025/01/31/1-31%E5%85%AC%E8%80%83%E8%B5%84%E6%96%99%E5%88%86%E4%BA%AB/" title="1.31公考资料分享" rel="bookmark">
   <img src="https://cdn.pixabay.com/photo/2025/01/20/20/11/shrine-9348003_1280.jpg" alt="1.31公考资料分享" class="!max-w-none">
   <span class="title">1.31公考资料分享</span>
-</a><a class="recommended-article-item" href="/2025/02/09/2-9公考资料分享/" title="2-9公考资料分享" rel="bookmark">
+</a><a class="recommended-article-item" href="/2025/02/09/2-9%E5%85%AC%E8%80%83%E8%B5%84%E6%96%99%E5%88%86%E4%BA%AB/" title="2-9公考资料分享" rel="bookmark">
   <img src="https://haowallpaper.com/link/common/file/previewFileImg/16360155533593984" alt="2-9公考资料分享" class="!max-w-none">
   <span class="title">2-9公考资料分享</span>
 </a></div>
@@ -697,7 +807,7 @@ import {initHBE} from "/js/plugins/hbe.js";
 			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
 				<a class="next" rel="next" href="/2025/02/09/%E5%9F%BA%E4%BA%8Ejs%E7%9A%84%E9%87%8D%E5%8A%9B%E6%A8%A1%E6%8B%9F%E7%A0%94%E7%A9%B6/">
 					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item">基于js的重力模拟研究</span>
+						<span class="post-nav-title-item truncate max-w-48">基于js的重力模拟研究</span>
 						<span class="post-nav-item">下一篇</span>
 					</span>
 					<span class="right arrow-icon flex justify-center items-center">
@@ -831,7 +941,7 @@ import {initHBE} from "/js/plugins/hbe.js";
         
         <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
             <span class="lg:block text-sm">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a> 驱动</span>
-            <span class="text-sm lg:block">主题&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.2</a></span>
+            <span class="text-sm lg:block">主题&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.5</a></span>
         </div>
         
         
