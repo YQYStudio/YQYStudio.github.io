@@ -1,220 +1,216 @@
-<!-- Hexo Markdown Embeddable Version -->
-
-<div id="html-debugger-app">
-
-<style>
-/* --- CSS Isolation Wrapper --- */
-#html-debugger-app {
-    all: initial; /* CSS Reset: Critical step to prevent theme styles from breaking the app */
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    color: #f3f4f6;
-    background: linear-gradient(135deg, #1e3a8a, #3b82f6);
-    padding: 1.5rem;
-    border-radius: 12px;
-    margin: 2rem 0;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-}
-#html-debugger-app * {
-    all: revert; /* Re-enable basic styles for app elements */
-    box-sizing: border-box;
-}
-
-#html-debugger-app .panel-3d { border-radius: 8px; background-color: rgba(0, 0, 0, 0.1); padding: 1px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.3), 0 4px 6px rgba(0,0,0,0.2); transition: transform 0.3s ease; }
-#html-debugger-app .panel-3d:hover { transform: translateY(-2px); }
-#html-debugger-app .CodeMirror { height: 75vh; border-radius: 7px; font-size: 15px; border: none; }
-#html-debugger-app #preview { width: 100%; height: 75vh; border: none; background: white; border-radius: 7px; }
-
-@media (max-width: 768px) {
-    #html-debugger-app .CodeMirror { height: 70vh; }
-    #html-debugger-app #preview { height: 70vh; }
-    #html-debugger-app .flex-col.md\:flex-row { flex-direction: column; } /* Enforce column layout on mobile */
-    #html-debugger-app .md\:w-1\/2 { width: 100% !important; }
-    #html-debugger-app .preview-container.hidden { margin-top: 1rem; }
-}
-
-#html-debugger-app .btn-3d { padding: 8px 16px; border-radius: 8px; color: white !important; transition: all 0.15s ease-out; box-shadow: 0 2px 5px rgba(0,0,0,0.2); font-size: 14px; line-height: 1.5; border: none; cursor: pointer; }
-#html-debugger-app .btn-3d:hover { transform: translateY(-1px); box-shadow: 0 4px 8px rgba(0,0,0,0.3); }
-#html-debugger-app .btn-3d:active { transform: translateY(1px); box-shadow: 0 1px 2px rgba(0,0,0,0.2); }
-#html-debugger-app .bg-blue-500.btn-3d { background-color: #3b82f6; border-bottom: 3px solid #1d4ed8; } #html-debugger-app .bg-blue-500.btn-3d:active { border-bottom-width: 1px; }
-#html-debugger-app .bg-indigo-500.btn-3d { background-color: #6366f1; border-bottom: 3px solid #4338ca; } #html-debugger-app .bg-indigo-500.btn-3d:active { border-bottom-width: 1px; }
-#html-debugger-app .bg-gray-600.btn-3d { background-color: #4b5563; border-bottom: 3px solid #1f2937; } #html-debugger-app .bg-gray-600.btn-3d:active { border-bottom-width: 1px; }
-#html-debugger-app .bg-yellow-500.btn-3d { background-color: #f59e0b; border-bottom: 3px solid #b45309; } #html-debugger-app .bg-yellow-500.btn-3d:active { border-bottom-width: 1px; }
-#html-debugger-app .bg-purple-500.btn-3d { background-color: #8b5cf6; border-bottom: 3px solid #6d28d9; } #html-debugger-app .bg-purple-500.btn-3d:active { border-bottom-width: 1px; }
-#html-debugger-app .bg-green-500.btn-3d { background-color: #10b981; border-bottom: 3px solid #047857; } #html-debugger-app .bg-green-500.btn-3d:active { border-bottom-width: 1px; }
-#html-debugger-app .bg-pink-500.btn-3d { background-color: #ec4899; border-bottom: 3px solid #9d174d; } #html-debugger-app .bg-pink-500.btn-3d:active { border-bottom-width: 1px; }
-
-#html-debugger-app .navbar { position: relative; z-index: 50; background: rgba(17, 24, 39, 0.9); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.1); padding: 0.75rem 1rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; margin-bottom: 1rem; border-radius: 8px; }
-#html-debugger-app .navbar-title { font-size: 1.25rem; font-weight: bold; }
-
-#html-debugger-app.light { background: linear-gradient(135deg, #fefcbf, #fed7aa); color: #1f2937; }
-#html-debugger-app.light .navbar { background: rgba(255, 255, 255, 0.9); color: #1f2937; border-bottom: 1px solid rgba(0,0,0,0.1); }
-
-#html-debugger-app #menu-dropdown { transition: transform 0.2s ease-out, opacity 0.2s ease-out; }
-#html-debugger-app #menu-dropdown.hidden { transform: translateY(-10px); opacity: 0; pointer-events: none; }
-
-#html-debugger-app .modal { display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); align-items: center; justify-content: center; }
-#html-debugger-app .modal-content { background-color: #1f2937; color: #f3f4f6; border: 1px solid #4b5563; width: 95vw; height: 95vh; max-width: 1800px; border-radius: 8px; position: relative; display: flex; flex-direction: column; box-shadow: 0 10px 25px rgba(0,0,0,0.5); transform: scale(0.95); opacity: 0; transition: transform 0.2s ease-out, opacity 0.2s ease-out; }
-#html-debugger-app .modal.active .modal-content { transform: scale(1); opacity: 1; }
-#html-debugger-app .modal-header { padding: 10px 20px; border-bottom: 1px solid #4b5563; display: flex; justify-content: space-between; align-items: center; }
-#html-debugger-app .modal-title { font-weight: bold; }
-#html-debugger-app .close-btn { color: #aaa; font-size: 28px; font-weight: bold; cursor: pointer; background: none; border: none; }
-#html-debugger-app .close-btn:hover { color: white; }
-#html-debugger-app #modalPreview { width: 100%; flex-grow: 1; border: none; background: white; border-bottom-left-radius: 7px; border-bottom-right-radius: 7px; }
-#html-debugger-app.light .menu-icon { color: #1f2937; }
-#html-debugger-app.light #menu-toggle-btn:hover { background-color: rgba(0,0,0,0.05); }
-#html-debugger-app.light #menu-dropdown { background-color: #f9fafb; border: 1px solid #e5e7eb; }
-
-/* Simple Flexbox Grid for Layout */
-#html-debugger-app .app-body { display: flex; flex-wrap: wrap; margin: 0 -0.75rem; }
-#html-debugger-app .editor-container, #html-debugger-app .preview-container { padding: 0 0.75rem; width: 100%; }
-@media (min-width: 768px) {
-    #html-debugger-app .editor-container.full-width { width: 100%; }
-    #html-debugger-app .editor-container.half-width { width: 50%; }
-    #html-debugger-app .preview-container { width: 50%; }
-}
-#html-debugger-app .hidden { display: none; }
-#html-debugger-app .relative { position: relative; }
-#html-debugger-app .absolute { position: absolute; }
-</style>
-
-<!-- App HTML Structure -->
-<div class="navbar">
-    <h1 class="navbar-title">在线HTML代码调试器</h1>
-    <div class="relative">
-        <button id="menu-toggle-btn" style="background:none; border:none; padding: 0.5rem; border-radius: 0.375rem; cursor:pointer;">
-            <svg class="w-6 h-6 text-white menu-icon" style="width: 1.5rem; height: 1.5rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-        </button>
-        <div id="menu-dropdown" class="hidden" style="position:absolute; right:0; margin-top:0.5rem; width: 12rem; background-color: #1f293b; border-radius: 0.5rem; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05); z-index:50; padding:0.5rem; display:flex; flex-direction:column; gap:0.5rem;">
-            <button id="runButton" class="w-full text-left bg-blue-500 btn-3d" style="width:100%; text-align:left; display:flex; align-items:center;">...</button>
-            <button id="togglePreview" class="w-full text-left bg-indigo-500 btn-3d" style="width:100%; text-align:left; display:flex; align-items:center;">...</button>
-            <button id="formatButton" class="w-full text-left bg-pink-500 btn-3d" style="width:100%; text-align:left; display:flex; align-items:center;">...</button>
-            <button id="clearButton" class="w-full text-left bg-gray-600 btn-3d" style="width:100%; text-align:left; display:flex; align-items:center;">...</button>
-            <button id="restoreButton" class="w-full text-left bg-yellow-500 btn-3d" style="width:100%; text-align:left; display:flex; align-items:center;">...</button>
-            <button id="themeToggle" class="w-full text-left bg-purple-500 btn-3d" style="width:100%; text-align:left; display:flex; align-items:center;">...</button>
-            <button id="maximizePreview" class="w-full text-left bg-green-500 btn-3d" style="width:100%; text-align:left; display:flex; align-items:center;">...</button>
-        </div>
-    </div>
-</div>
-<div class="app-body">
-    <div class="editor-container full-width">
-        <h2 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 0.75rem;">代码编辑区</h2>
-        <div id="editor" class="panel-3d"></div>
-    </div>
-    <div class="preview-container hidden">
-        <h2 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 0.75rem;">预览区</h2>
-        <div class="panel-3d"><iframe id="preview"></iframe></div>
-    </div>
-</div>
-<div id="previewModal" class="modal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <span class="modal-title">最大化预览</span>
-            <button class="close-btn">&times;</button>
-        </div>
-        <iframe id="modalPreview"></iframe>
-    </div>
-</div>
-
-<!-- Dependencies - These must be loaded in the head or before your app script -->
-<link rel="stylesheet" href="https://cdn.staticfile.org/codemirror/5.65.15/codemirror.min.css">
-<link rel="stylesheet" href="https://cdn.staticfile.org/codemirror/5.65.15/theme/monokai.min.css">
-<link rel="stylesheet" href="https://cdn.staticfile.org/codemirror/5.65.15/addon/hint/show-hint.min.css">
-<script src="https://cdn.staticfile.org/codemirror/5.65.15/codemirror.min.js"></script>
-<script src="https://cdn.staticfile.org/codemirror/5.65.15/mode/xml/xml.min.js"></script>
-<script src="https://cdn.staticfile.org/codemirror/5.65.15/mode/javascript/javascript.min.js"></script>
-<script src="https://cdn.staticfile.org/codemirror/5.65.15/mode/css/css.min.js"></script>
-<script src="https://cdn.staticfile.org/codemirror/5.65.15/mode/htmlmixed/htmlmixed.min.js"></script>
-<script src="https://cdn.staticfile.org/codemirror/5.65.15/addon/hint/show-hint.min.js"></script>
-<script src="https://cdn.staticfile.org/codemirror/5.65.15/addon/hint/xml-hint.min.js"></script>
-<script src="https://cdn.staticfile.org/codemirror/5.65.15/addon/hint/html-hint.min.js"></script>
-<script src="https://cdn.staticfile.org/codemirror/5.65.15/addon/hint/css-hint.min.js"></script>
-<script src="https://cdn.staticfile.org/codemirror/5.65.15/addon/hint/javascript-hint.min.js"></script>
-
-<script>
-// Use an IIFE to avoid polluting the global scope
-(function() {
-    // Ensure CodeMirror is loaded before we run our code
-    if (typeof CodeMirror === 'undefined') {
-        console.error("CodeMirror library is not loaded. The app will not run.");
-        return;
-    }
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    const appContainer = document.getElementById('html-debugger-app');
-    if (!appContainer) return;
+    <!-- [SEO优化] 1. 更有吸引力和关键词的标题 -->
+    <title>HTML在线运行 | 在线代码调试器 - 实时预览网页工具</title>
+    
+    <!-- [SEO优化] 2. 核心描述，告诉搜索引擎我们的核心功能 -->
+    <meta name="description" content="一款强大、快速、免费的在线HTML代码调试工具，支持HTML、CSS、JavaScript代码实时运行与预览。提供代码格式化、移动端适配和沉浸式预览，是网页开发者和学习者的必备网络工具。">
+    
+    <!-- [SEO优化] 3. 关键词，覆盖用户可能的搜索词 -->
+    <meta name="keywords" content="HTML在线运行, 代码调试, 网页工具, 在线HTML编辑器, 前端开发工具, CSS在线测试, JavaScript运行器, Code Editor Online">
+    <meta name="author" content="Web Tool Developer">
+    
+    <!-- [SEO优化] 4. 社交媒体分享优化 (Open Graph) -->
+    <meta property="og:title" content="HTML在线运行 | 在线代码调试器">
+    <meta property="og:description" content="强大的在线HTML, CSS, JS代码编辑器，实时运行和预览。">
+    <meta property="og:type" content="website">
+    <!-- <meta property="og:url" content="https://www.your-website.com/"> --> <!-- 替换为你的网站URL -->
+    <!-- <meta property="og:image" content="https://www.your-website.com/preview-image.jpg"> --> <!-- 替换为一张工具的截图预览图 -->
 
-    const DEFAULT_TEMPLATE = `<!DOCTYPE html>
+    <!-- [SEO优化] 5. 爬虫指令 -->
+    <meta name="robots" content="index, follow">
+    
+    <link rel="dns-prefetch" href="//cdn.staticfile.org">
+    <link href="https://cdn.staticfile.org/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.staticfile.org/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/codemirror/5.65.15/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/codemirror/5.65.15/theme/monokai.min.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/codemirror/5.65.15/addon/hint/show-hint.min.css">
+    
+    <style>
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: linear-gradient(135deg, #1e3a8a, #3b82f6); margin: 0; padding: 0; overflow: auto; color: #f3f4f6; transition: background 0.5s ease, color 0.5s ease; }
+        body.light { background: linear-gradient(135deg, #fefcbf, #fed7aa); color: #1f2937; }
+        .panel-3d { border-radius: 8px; background-color: rgba(0, 0, 0, 0.1); padding: 1px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.3), 0 4px 6px rgba(0,0,0,0.2); transition: transform 0.3s ease; }
+        .panel-3d:hover { transform: translateY(-2px); }
+        .CodeMirror { height: 75vh; border-radius: 7px; font-size: 15px; border: none; }
+        #preview { width: 100%; height: 75vh; border: none; background: white; border-radius: 7px; }
+        
+        /* [移动端优化] 将手机下编辑区和预览区的高度从50vh提升到70vh，提供更大的可视区域 */
+        @media (max-width: 768px) {
+            .CodeMirror { height: 70vh; }
+            #preview { height: 70vh; }
+        }
+
+        .btn-3d { padding: 8px 16px; border-radius: 8px; color: white; transition: all 0.15s ease-out; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+        .btn-3d:hover { transform: translateY(-1px); box-shadow: 0 4px 8px rgba(0,0,0,0.3); }
+        .btn-3d:active { transform: translateY(1px); box-shadow: 0 1px 2px rgba(0,0,0,0.2); }
+        .bg-blue-500.btn-3d { background-color: #3b82f6; border-bottom: 3px solid #1d4ed8; } .bg-blue-500.btn-3d:active { border-bottom-width: 1px; }
+        .bg-indigo-500.btn-3d { background-color: #6366f1; border-bottom: 3px solid #4338ca; } .bg-indigo-500.btn-3d:active { border-bottom-width: 1px; }
+        .bg-gray-600.btn-3d { background-color: #4b5563; border-bottom: 3px solid #1f2937; } .bg-gray-600.btn-3d:active { border-bottom-width: 1px; }
+        .bg-yellow-500.btn-3d { background-color: #f59e0b; border-bottom: 3px solid #b45309; } .bg-yellow-500.btn-3d:active { border-bottom-width: 1px; }
+        .bg-purple-500.btn-3d { background-color: #8b5cf6; border-bottom: 3px solid #6d28d9; } .bg-purple-500.btn-3d:active { border-bottom-width: 1px; }
+        .bg-green-500.btn-3d { background-color: #10b981; border-bottom: 3px solid #047857; } .bg-green-500.btn-3d:active { border-bottom-width: 1px; }
+        .bg-pink-500.btn-3d { background-color: #ec4899; border-bottom: 3px solid #9d174d; } .bg-pink-500.btn-3d:active { border-bottom-width: 1px; }
+        .navbar { position: relative; z-index: 50; background: rgba(17, 24, 39, 0.9); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.1); }
+        body.light .navbar { background: rgba(255, 255, 255, 0.9); color: #1f2937; border-bottom: 1px solid rgba(0,0,0,0.1); }
+        #menu-dropdown { transition: transform 0.2s ease-out, opacity 0.2s ease-out; }
+        #menu-dropdown.hidden { transform: translateY(-10px); opacity: 0; pointer-events: none; }
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); align-items: center; justify-content: center; }
+        .modal-content { background-color: #1f2937; color: #f3f4f6; border: 1px solid #4b5563; width: 95vw; height: 95vh; max-width: 1800px; border-radius: 8px; position: relative; display: flex; flex-direction: column; box-shadow: 0 10px 25px rgba(0,0,0,0.5); transform: scale(0.95); opacity: 0; transition: transform 0.2s ease-out, opacity 0.2s ease-out; }
+        .modal.active .modal-content { transform: scale(1); opacity: 1; }
+        .modal-header { padding: 10px 20px; border-bottom: 1px solid #4b5563; display: flex; justify-content: space-between; align-items: center; }
+        .modal-title { font-weight: bold; }
+        .close { color: #aaa; font-size: 28px; font-weight: bold; cursor: pointer; }
+        .close:hover, .close:focus { color: white; text-decoration: none; }
+        #modalPreview { width: 100%; flex-grow: 1; border: none; background: white; border-bottom-left-radius: 7px; border-bottom-right-radius: 7px; }
+        body.light .menu-icon { color: #1f2937; }
+        body.light #menu-toggle-btn:hover { background-color: rgba(0,0,0,0.05); }
+        body.light #menu-dropdown { background-color: #f9fafb; border: 1px solid #e5e7eb; }
+    </style>
+</head>
+<body class="flex flex-col">
+    <!-- HTML和JS部分完全不变 -->
+    <div class="navbar p-3 md:p-4 flex justify-between items-center">
+        <h1 class="text-xl md:text-2xl font-bold">在线HTML代码调试器</h1>
+        <div class="relative">
+            <button id="menu-toggle-btn" class="p-2 rounded-md hover:bg-gray-700 focus:outline-none">
+                <svg class="w-6 h-6 text-white menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+            <div id="menu-dropdown" class="hidden absolute right-0 mt-2 w-48 bg-gray-800 rounded-lg shadow-xl z-50 p-2 space-y-2">
+                <button id="runButton" class="w-full text-left bg-blue-500 btn-3d flex items-center"><svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg><span>运行</span></button>
+                <button id="togglePreview" class="w-full text-left bg-indigo-500 btn-3d flex items-center"><svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg><span>显示预览</span></button>
+                <button id="formatButton" class="w-full text-left bg-pink-500 btn-3d flex items-center"><svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l4 4m0 0l4 4m-4-4v12m-4-4l-4 4m0 0l-4 4m4-4V5"></path></svg><span>格式化</span></button>
+                <button id="clearButton" class="w-full text-left bg-gray-600 btn-3d flex items-center"><svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg><span>清空</span></button>
+                <button id="restoreButton" class="w-full text-left bg-yellow-500 btn-3d flex items-center"><svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h5M20 20v-5h-5M4 4l5 5M20 20l-5-5"></path></svg><span>恢复默认</span></button>
+                <button id="themeToggle" class="w-full text-left bg-purple-500 btn-3d flex items-center"><svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg><span>切换主题</span></button>
+                <button id="maximizePreview" class="w-full text-left bg-green-500 btn-3d flex items-center"><svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5v-4m0 0h-4m4 0l-5-5"></path></svg><span>最大化</span></button>
+            </div>
+        </div>
+    </div>
+    <div class="flex flex-col md:flex-row flex-1 p-4 md:p-6 md:space-x-6">
+        <div class="editor-container w-full transition-all duration-300 ease-in-out">
+            <h2 class="text-lg font-semibold mb-3 px-1">代码编辑区</h2>
+            <div id="editor" class="panel-3d"></div>
+        </div>
+        <div class="preview-container w-full md:w-1/2 hidden mt-4 md:mt-0">
+            <h2 class="text-lg font-semibold mb-3 px-1">预览区</h2>
+            <div class="panel-3d"><iframe id="preview"></iframe></div>
+            <div id="errorLog"></div>
+        </div>
+    </div>
+    <div id="previewModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="modal-title">最大化预览</span>
+                <span class="close">&times;</span>
+            </div>
+            <iframe id="modalPreview"></iframe>
+        </div>
+    </div>
+    
+    <script src="https://cdn.staticfile.org/codemirror/5.65.15/codemirror.min.js" defer></script>
+    <script src="https://cdn.staticfile.org/codemirror/5.65.15/mode/xml/xml.min.js" defer></script>
+    <script src="https://cdn.staticfile.org/codemirror/5.65.15/mode/javascript/javascript.min.js" defer></script>
+    <script src="https://cdn.staticfile.org/codemirror/5.65.15/mode/css/css.min.js" defer></script>
+    <script src="https://cdn.staticfile.org/codemirror/5.65.15/mode/htmlmixed/htmlmixed.min.js" defer></script>
+    <script src="https://cdn.staticfile.org/codemirror/5.65.15/addon/hint/show-hint.min.js" defer></script>
+    <script src="https://cdn.staticfile.org/codemirror/5.65.15/addon/hint/xml-hint.min.js" defer></script>
+    <script src="https://cdn.staticfile.org/codemirror/5.65.15/addon/hint/html-hint.min.js" defer></script>
+    <script src="https://cdn.staticfile.org/codemirror/5.65.15/addon/hint/css-hint.min.js" defer></script>
+    <script src="https://cdn.staticfile.org/codemirror/5.65.15/addon/hint/javascript-hint.min.js" defer></script>
+    
+    <script>
+        window.addEventListener('DOMContentLoaded', function() {
+            const DEFAULT_TEMPLATE = `<!DOCTYPE html>
 <html lang="zh-CN">
     <head>
         <meta charset="UTF-8">
         <title>示例页面</title>
         <style>
-            body { font-family: Arial, sans-serif; text-align: center; padding: 20px; background: #f0f4f8; }
-            h1 { color: #1e40af; }
-            p { font-size: 18px; color: #4b5563; }
-            .card { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); display: inline-block; }
+            body {
+                font-family: Arial, sans-serif;
+                text-align: center;
+                padding: 20px;
+                background: #f0f4f8;
+            }
+            h1 {
+                color: #1e40af;
+            }
+            p {
+                font-size: 18px;
+                color: #4b5563;
+            }
+            .card {
+                background: white;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+                display: inline-block;
+            }
         </style>
     </head>
     <body>
         <div class="card">
             <h1>欢迎体验在线调试器！</h1>
-            <p>这是一个嵌入在文章中的应用。</p>
+            <p>这是一个格式完美的初始模板。</p>
         </div>
     </body>
 </html>`;
 
-    // Select elements within the app container
-    const editorElement = appContainer.querySelector('#editor');
-    const preview = appContainer.querySelector('#preview');
-    const modal = appContainer.querySelector('#previewModal');
-    const closeBtn = modal.querySelector('.close-btn');
-    const editorContainer = appContainer.querySelector('.editor-container');
-    const previewContainer = appContainer.querySelector('.preview-container');
-    const menuToggleBtn = appContainer.querySelector('#menu-toggle-btn');
-    const menuDropdown = appContainer.querySelector('#menu-dropdown');
-    
-    // Buttons (with their icons and text)
-    const buttons = {
-        runButton: { el: appContainer.querySelector('#runButton'), icon: '<svg viewBox="0 0 24 24" style="width:1.25rem; height:1.25rem; margin-right:0.5rem;" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>', text: '运行' },
-        togglePreview: { el: appContainer.querySelector('#togglePreview'), icon: '<svg viewBox="0 0 24 24" style="width:1.25rem; height:1.25rem; margin-right:0.5rem;" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>', text: '显示预览' },
-        formatButton: { el: appContainer.querySelector('#formatButton'), icon: '<svg viewBox="0 0 24 24" style="width:1.25rem; height:1.25rem; margin-right:0.5rem;" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l4 4m0 0l4 4m-4-4v12m-4-4l-4 4m0 0l-4 4m4-4V5"></path></svg>', text: '格式化' },
-        clearButton: { el: appContainer.querySelector('#clearButton'), icon: '<svg viewBox="0 0 24 24" style="width:1.25rem; height:1.25rem; margin-right:0.5rem;" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>', text: '清空' },
-        restoreButton: { el: appContainer.querySelector('#restoreButton'), icon: '<svg viewBox="0 0 24 24" style="width:1.25rem; height:1.25rem; margin-right:0.5rem;" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h5M20 20v-5h-5M4 4l5 5M20 20l-5-5"></path></svg>', text: '恢复默认' },
-        themeToggle: { el: appContainer.querySelector('#themeToggle'), icon: '<svg viewBox="0 0 24 24" style="width:1.25rem; height:1.25rem; margin-right:0.5rem;" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>', text: '切换主题' },
-        maximizePreview: { el: appContainer.querySelector('#maximizePreview'), icon: '<svg viewBox="0 0 24 24" style="width:1.25rem; height:1.25rem; margin-right:0.5rem;" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5v-4m0 0h-4m4 0l-5-5"></path></svg>', text: '最大化' }
-    };
-    
-    // Populate buttons with content
-    for (const key in buttons) {
-        const btn = buttons[key];
-        btn.el.innerHTML = `${btn.icon}<span>${btn.text}</span>`;
-    }
+            const editorElement = document.getElementById('editor');
+            const preview = document.getElementById('preview');
+            const modal = document.getElementById('previewModal');
+            const closeBtn = modal.querySelector('.close');
+            const errorLog = document.getElementById('errorLog');
+            const editorContainer = document.querySelector('.editor-container');
+            const previewContainer = document.querySelector('.preview-container');
+            const body = document.body;
+            const menuToggleBtn = document.getElementById('menu-toggle-btn');
+            const menuDropdown = document.getElementById('menu-dropdown');
+            const runButton = document.getElementById('runButton');
+            const togglePreviewButton = document.getElementById('togglePreview');
+            const clearButton = document.getElementById('clearButton');
+            const restoreButton = document.getElementById('restoreButton');
+            const themeToggle = document.getElementById('themeToggle');
+            const maximizePreview = document.getElementById('maximizePreview');
+            const formatButton = document.getElementById('formatButton');
+            let isDarkTheme = true;
+            let isPreviewVisible = false;
 
-    let isDarkTheme = true;
-    let isPreviewVisible = false;
+            const cm = CodeMirror(editorElement, { 
+                mode: 'htmlmixed', 
+                theme: 'monokai', 
+                lineNumbers: true, 
+                autofocus: true, 
+                value: DEFAULT_TEMPLATE,
+                lineWrapping: true 
+            });
 
-    const cm = CodeMirror(editorElement, { mode: 'htmlmixed', theme: 'monokai', lineNumbers: true, autofocus: true, value: DEFAULT_TEMPLATE, lineWrapping: true });
+            function updatePreview() { if (!isPreviewVisible) return; const code = cm.getValue(); errorLog.textContent = ''; try { const doc = preview.contentDocument || preview.contentWindow.document; doc.open(); doc.write(code); doc.close(); } catch (error) { errorLog.textContent = '错误: ' + error.message; } }
+            function updateModalPreview() { const modalPreview = document.getElementById('modalPreview'); const code = cm.getValue(); try { const doc = modalPreview.contentDocument || modalPreview.contentWindow.document; doc.open(); doc.write(code); doc.close(); } catch (error) {} }
+            function openModal() { modal.style.display = 'flex'; setTimeout(() => modal.classList.add('active'), 10); updateModalPreview(); }
+            function closeModal() { modal.classList.remove('active'); setTimeout(() => modal.style.display = 'none', 200); }
 
-    function updatePreview() { if (!isPreviewVisible) return; const code = cm.getValue(); try { const doc = preview.contentDocument || preview.contentWindow.document; doc.open(); doc.write(code); doc.close(); } catch (error) { /* handle error */ } }
-    function updateModalPreview() { const modalPreview = appContainer.querySelector('#modalPreview'); const code = cm.getValue(); try { const doc = modalPreview.contentDocument || modalPreview.contentWindow.document; doc.open(); doc.write(code); doc.close(); } catch (error) {} }
-    function openModal() { modal.style.display = 'flex'; setTimeout(() => modal.classList.add('active'), 10); updateModalPreview(); }
-    function closeModal() { modal.classList.remove('active'); setTimeout(() => modal.style.display = 'none', 200); }
+            menuToggleBtn.addEventListener('click', (event) => { event.stopPropagation(); menuDropdown.classList.toggle('hidden'); });
+            window.addEventListener('click', () => { if (!menuDropdown.classList.contains('hidden')) { menuDropdown.classList.add('hidden'); } });
+            menuDropdown.addEventListener('click', () => { setTimeout(() => menuDropdown.classList.add('hidden'), 100); });
 
-    menuToggleBtn.addEventListener('click', (event) => { event.stopPropagation(); menuDropdown.classList.toggle('hidden'); });
-    document.addEventListener('click', () => { if (!menuDropdown.classList.contains('hidden')) { menuDropdown.classList.add('hidden'); } });
-    menuDropdown.addEventListener('click', () => { setTimeout(() => menuDropdown.classList.add('hidden'), 100); });
-
-    buttons.togglePreview.el.addEventListener('click', () => { isPreviewVisible = !isPreviewVisible; const buttonText = buttons.togglePreview.el.querySelector('span'); if (isPreviewVisible) { previewContainer.classList.remove('hidden'); editorContainer.classList.remove('full-width'); editorContainer.classList.add('half-width'); buttonText.textContent = '隐藏预览'; updatePreview(); } else { previewContainer.classList.add('hidden'); editorContainer.classList.remove('half-width'); editorContainer.classList.add('full-width'); buttonText.textContent = '显示预览'; } setTimeout(() => cm.refresh(), 300); });
-    buttons.runButton.el.addEventListener('click', () => { if (!isPreviewVisible) { buttons.togglePreview.el.click(); } else { updatePreview(); } });
-    cm.on('change', updatePreview);
-    buttons.clearButton.el.addEventListener('click', () => { cm.setValue(''); if (preview.srcdoc) { preview.srcdoc = ''; } });
-    buttons.restoreButton.el.addEventListener('click', () => { cm.setValue(DEFAULT_TEMPLATE); });
-    buttons.formatButton.el.addEventListener('click', () => { cm.operation(() => { for (let i = 0; i < cm.lineCount(); i++) { cm.indentLine(i); } }); });
-    buttons.themeToggle.el.addEventListener('click', () => { isDarkTheme = !isDarkTheme; appContainer.classList.toggle('light'); cm.setOption('theme', isDarkTheme ? 'monokai' : 'default'); });
-    buttons.maximizePreview.el.addEventListener('click', openModal);
-    closeBtn.addEventListener('click', closeModal);
-    modal.addEventListener('click', (event) => { if (event.target == modal) { closeModal(); } });
-    document.addEventListener('keydown', (event) => { if (event.key === 'Escape' && modal.style.display === 'flex') { closeModal(); } });
-})();
-</script>
-
-</div>
+            togglePreviewButton.addEventListener('click', () => { isPreviewVisible = !isPreviewVisible; const buttonText = togglePreviewButton.querySelector('span'); if (isPreviewVisible) { previewContainer.classList.remove('hidden'); editorContainer.classList.remove('w-full'); editorContainer.classList.add('md:w-1/2'); buttonText.textContent = '隐藏预览'; updatePreview(); } else { previewContainer.classList.add('hidden'); editorContainer.classList.remove('md:w-1/2'); editorContainer.classList.add('w-full'); buttonText.textContent = '显示预览'; } setTimeout(() => cm.refresh(), 300); });
+            runButton.addEventListener('click', () => { if (!isPreviewVisible) { togglePreviewButton.click(); } else { updatePreview(); } });
+            cm.on('change', updatePreview);
+            clearButton.addEventListener('click', () => { cm.setValue(''); if (preview.srcdoc) { preview.srcdoc = ''; } errorLog.textContent = ''; });
+            restoreButton.addEventListener('click', () => { cm.setValue(DEFAULT_TEMPLATE); });
+            formatButton.addEventListener('click', () => { cm.operation(() => { for (let i = 0; i < cm.lineCount(); i++) { cm.indentLine(i); } }); });
+            themeToggle.addEventListener('click', () => { isDarkTheme = !isDarkTheme; body.classList.toggle('light'); cm.setOption('theme', isDarkTheme ? 'monokai' : 'default'); });
+            maximizePreview.addEventListener('click', openModal);
+            closeBtn.addEventListener('click', closeModal);
+            window.addEventListener('click', (event) => { if (event.target == modal) { closeModal(); } });
+            document.addEventListener('keydown', (event) => { if (event.key === 'Escape' && modal.style.display === 'flex') { closeModal(); } });
+        });
+    </script>
+</body>
+</html>
